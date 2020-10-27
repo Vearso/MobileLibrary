@@ -1,0 +1,41 @@
+@import "src/styles/colors";
+@import "src/styles/fonts";
+@use 'sass:color';
+
+.header__nav{
+  font-family: $main;
+  text-transform: uppercase;
+  color: $colorText;
+
+  .nav__hamburger {
+    font-size: 2em;
+    background: none;
+    opacity: 100%;
+    border: none;
+    &--icon {
+
+    }
+  }
+  .nav__list--hidden{
+    display: none;
+  }
+  .nav__list--show{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: $colorSecondary;
+    width: 100%;
+    li{
+      padding: 10px;
+      list-style: none;
+      a{
+        color: $colorText;
+        text-decoration: none;
+      }
+      &:hover{
+      border-left: 4px solid $colorAccent;
+        background-color:  scale-color($colorSecondary, $lightness: 30% );
+    }
+    };
+  }
+}

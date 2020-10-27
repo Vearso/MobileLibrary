@@ -1,0 +1,14 @@
+@import "src/styles/colors";
+@import "src/styles/fonts";
+
+
+.page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 50px;
+  background-color: $colorPrimary;
+  box-shadow: 0 3px 3px $colorSecondary;
+}
+//@import "src/components/Home/Header/Navigation/Navigation";
