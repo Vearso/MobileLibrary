@@ -1,0 +1,10 @@
+@import "src/styles/colors";
+
+.btn{
+  padding: 1em 2em;
+  background-color: $colorAccent;
+  border: none;
+  border-radius: 2em;
+  text-transform: uppercase;
+  color: $colorText;
+}

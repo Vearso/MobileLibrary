@@ -2,7 +2,10 @@
 
 .page__articles {
   background-color: $colorSecondary;
-  .disabled {
-
+  padding: 2em 0;
+  .articles__title {
+    font-size: 3em;
+    text-align: center;
   }
 }
+
