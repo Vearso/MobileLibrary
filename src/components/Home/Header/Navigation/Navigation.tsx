@@ -13,7 +13,7 @@ const Navigation = () => {
     return(
 
       <nav className="header__nav">
-          <button className="nav__hamburger" onClick={e =>handleClick(e)}><FontAwesomeIcon className= 'nav__hamburger--icon' icon={faBars}/></button>
+          <img src='hamburger.svg' className="nav__hamburger" onClick={e =>handleClick(e)}><FontAwesomeIcon className= 'nav__hamburger--icon' icon={faBars}/></a>
           <ul className={showMenu ? "nav__list--show" : "nav__list--hidden nav__list"}>
               <li><a href={'Home'}>Home</a></li>
               <li><a href={'#page__about'}>About</a></li>
