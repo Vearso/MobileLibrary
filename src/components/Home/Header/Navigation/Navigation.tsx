@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars} from "@fortawesome/free-solid-svg-icons";
 import './Navigation.scss';
 
 const Navigation = () => {
@@ -13,7 +11,7 @@ const Navigation = () => {
     return(
 
       <nav className="header__nav">
-          <img src='hamburger.svg' className="nav__hamburger" onClick={e =>handleClick(e)}><FontAwesomeIcon className= 'nav__hamburger--icon' icon={faBars}/></a>
+          <button className="nav__hamburger" onClick={e =>handleClick(e)}><i className='nav__hamburger--icon far fa-bars'/></button>
           <ul className={showMenu ? "nav__list--show" : "nav__list--hidden nav__list"}>
               <li><a href={'Home'}>Home</a></li>
               <li><a href={'#page__about'}>About</a></li>

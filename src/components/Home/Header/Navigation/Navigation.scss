@@ -8,10 +8,11 @@
   color: $colorText;
 
   .nav__hamburger {
+    padding: 1em;
     font-size: 2em;
     background: none;
-    opacity: 100%;
     border: none;
+    color: $colorText;
     &--icon {
 
     }
