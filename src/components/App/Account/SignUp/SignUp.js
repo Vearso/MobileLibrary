@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-
-import { withFirebase } from '../Firebase';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {compose} from 'recompose';
+import {withFirebase} from '../Firebase';
 import * as ROUTES from '../../../constants/constants';
+
+import './SignUp.scss';
 
 const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
-        <SignUpForm />
+        <SignUpForm/>
     </div>
 );
 
@@ -23,27 +25,27 @@ class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { ...initialState };
+        this.state = {...initialState};
     }
 
     onSubmit = event => {
-        const { username, email, passwordOne } = this.state;
+        const {username, email, passwordOne} = this.state;
 
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
-                this.setState({ ...initialState });
-                this.props.history.push(ROUTES.SIGN_IN);
+                this.setState({...initialState});
+                this.props.history.push(ROUTES.APP);
             })
             .catch(error => {
-                this.setState({ error });
+                this.setState({error});
             });
 
         event.preventDefault();
     };
 
     onChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.setState({[event.target.name]: event.target.value});
     };
 
     render() {
@@ -107,8 +109,11 @@ const SignUpLink = () => (
     </p>
 );
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const SignUpForm = compose(
+    withRouter,
+    withFirebase,
+)(SignUpFormBase);
 
 export default SignUpPage;
 
-export { SignUpForm, SignUpLink };
+export {SignUpForm, SignUpLink};
