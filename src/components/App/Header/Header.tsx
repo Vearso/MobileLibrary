@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../Home/Header/Logo/Logo";
+import Logo from "../../Home/Logo/Logo";
 import User from "./User/User";
 import Search from "./Search/Search";
 import Info from "./Info/Info";

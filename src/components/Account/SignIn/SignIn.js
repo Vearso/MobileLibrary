@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 
 import { SignUpLink } from '../SignUp/SignUp';
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../../constants/constants';
+import * as ROUTES from '../../constants/constants';
 import {PasswordForgetLink} from "../PasswordForget/PasswordForget";
 
 const SignInPage = () => (
@@ -35,7 +35,7 @@ class SignInFormBase extends Component {
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...initialState });
-                this.props.history.push(ROUTES.APP);
+                this.props.history.push(ROUTES.MOBILE_LIBRARY);
             })
             .catch(error => {
                 this.setState({ error });

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {compose} from 'recompose';
 import {withFirebase} from '../Firebase';
-import * as ROUTES from '../../../constants/constants';
+import * as ROUTES from '../../constants/constants';
 
 import './SignUp.scss';
 
@@ -35,7 +35,7 @@ class SignUpFormBase extends Component {
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({...initialState});
-                this.props.history.push(ROUTES.APP);
+                this.props.history.push(ROUTES.MOBILE_LIBRARY);
             })
             .catch(error => {
                 this.setState({error});
