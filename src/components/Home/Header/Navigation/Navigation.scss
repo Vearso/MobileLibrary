@@ -2,7 +2,7 @@
 @import "src/styles/fonts";
 @use 'sass:color';
 
-.header__nav{
+.header__nav {
   font-family: $main;
   text-transform: uppercase;
   color: $colorText;
@@ -13,30 +13,40 @@
     background: none;
     border: none;
     color: $colorText;
+
     &--icon {
 
     }
   }
-  .nav__list--hidden{
+
+  .nav__list--hidden {
     display: none;
   }
-  .nav__list--show{
+
+  .nav__list--show {
     position: absolute;
-    top: 50px;
+    top: 44px;
     left: 0;
     background-color: $colorSecondary;
     width: 100%;
-    li{
+    padding: 0;
+
+    li {
       padding: 10px;
       list-style: none;
-      a{
+      width: 100%;
+      a {
+        display: block;
         color: $colorText;
         text-decoration: none;
+        width: 100%;
       }
-      &:hover{
-      border-left: 4px solid $colorAccent;
-        background-color:  scale-color($colorSecondary, $lightness: 30% );
+
+      &:hover {
+        border-left: 4px solid $colorAccent;
+        background-color: scale-color($colorSecondary, $lightness: 30%);
+      }
     }
-    };
+  ;
   }
 }

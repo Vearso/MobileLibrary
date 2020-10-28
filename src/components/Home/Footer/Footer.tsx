@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 const Footer = () => {
     const [email,setEmail] = useState('')
     return (
-        <footer className="page__footer">
+        <footer id='footer'className="page__footer">
             <div className="footer">
                 <div className="footer__contact">
                     <p className="contact--name">Mobile Library</p>

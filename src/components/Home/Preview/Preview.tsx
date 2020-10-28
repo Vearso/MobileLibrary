@@ -5,7 +5,7 @@ import Article from "../Article/Article";
 
 const Preview = () => {
     return (
-        <section className="page__preview">
+        <section id='examples' className="page__preview">
             <h2 className="preview__title">Preview of application</h2>
             <ReactSwipe swipeOptions={{continuous: true}}>
                 <div><Article src='bannerS1.jpg' title='First example'>Some text</Article></div>
