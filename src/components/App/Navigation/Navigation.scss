@@ -1,0 +1,33 @@
+@import "src/styles/colors";
+.disabled {
+  display: none;
+}
+
+.app__navigation {
+  font-size: 1.5em;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: $colorSecondary;
+  width: 30%;
+  color: $colorText;
+
+  .app__navigation--list {
+    padding: 0.2em 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin: 0.2em 0;
+    .list--title{
+      text-align: center;
+      padding: 0.1em;
+      margin: 0;
+    }
+    li {
+      padding: 0.5em;
+    &:hover{
+      border-left: 5px solid $colorAccent;
+    }
+    }
+  }
+}
