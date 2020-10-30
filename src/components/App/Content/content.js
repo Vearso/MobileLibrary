@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {getVolumes} from "../../Books/API/requests";
+import {POSTER} from "../../Books/API/paths";
 
-const Content = ({books,setBooks,search}) => {
-    useEffect(()=>{
-        getVolumes(setBooks,search)
-        console.log(books)
-    },[])
+const Content = ({books}) => {
+
+
     return(
         <h1>
-           Hello
+            {books.length !== 0 ? books.items.map(item => <img src={`${item.volumeInfo.imageLinks.smallThumbnail}`}/>) : 'ehh'}
         </h1>
     )
 }
+export default Content;

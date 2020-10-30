@@ -5,14 +5,15 @@ import Info from "../Info/Info";
 import './Header.scss';
 import Navigation from "../Navigation/Navigation";
 
-const Header = () => {
+const Header = ({search,setSearch}) => {
     const [showMenu,setShowMenu] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+
     return (
         <header className='app__header'>
             <Logo link={'mobilelibrary'} show={showSearch}/>
             <div className='user__panel'>
-            <Info showSearch={showSearch} setShowSearch={setShowSearch} search={search} setSearc={setSearch}/>
+            <Info showSearch={showSearch} setShowSearch={setShowSearch} search={search} setSearch={setSearch}/>
             <Avatar setShow={setShowMenu}/>
             </div>
             <Navigation show={showMenu}/>
