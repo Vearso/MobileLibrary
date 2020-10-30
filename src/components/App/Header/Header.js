@@ -12,7 +12,7 @@ const Header = () => {
         <header className='app__header'>
             <Logo link={'mobilelibrary'} show={showSearch}/>
             <div className='user__panel'>
-            <Info search={showSearch} setSearch={setShowSearch}/>
+            <Info showSearch={showSearch} setShowSearch={setShowSearch} search={search} setSearc={setSearch}/>
             <Avatar setShow={setShowMenu}/>
             </div>
             <Navigation show={showMenu}/>
