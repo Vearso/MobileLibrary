@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {compose} from 'recompose';
 import {withFirebase} from '../Firebase';
-import * as ROUTES from '../../constants/constants';
+import * as ROUTES from '../../constants/routes';
 
-import './SignUp.scss';
+import '../form.scss';
+
 
 const SignUpPage = () => (
-    <div>
-        <h1>SignUp</h1>
+    <div className='page__form'>
+        <h1 className='form__title'>Sign Up</h1>
         <SignUpForm/>
     </div>
 );
@@ -34,8 +35,25 @@ class SignUpFormBase extends Component {
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
+                return this.props.firebase
+                    .user(authUser.user.uid)
+                    .set({
+                        username,
+                        email,
+                        name:'',
+                        surname:'',
+                        gender:'',
+                        about:'',
+                        favoriteGenre:'',
+                        favoriteBooks:[],
+                        queue:[],
+                        contacts:{},
+                        inProgress:'',
+                    });
+            })
+            .then(() => {
                 this.setState({...initialState});
-                this.props.history.push(ROUTES.MOBILE_LIBRARY);
+                this.props.history.push(ROUTES.SET_UP);
             })
             .catch(error => {
                 this.setState({error});
@@ -64,40 +82,40 @@ class SignUpFormBase extends Component {
             username === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
+            <form className='form' onSubmit={this.onSubmit}>
+                <input className='form__input'
                     name="username"
                     value={username}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Full Name"
                 />
-                <input
+                <input className='form__input'
                     name="email"
                     value={email}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Email Address"
                 />
-                <input
+                <input className='form__input'
                     name="passwordOne"
                     value={passwordOne}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
                 />
-                <input
+                <input className='form__input'
                     name="passwordTwo"
                     value={passwordTwo}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Confirm Password"
                 />
-                <button disabled={isInvalid} type="submit">
+                <button className='button' disabled={isInvalid} type="submit">
                     Sign Up
                 </button>
 
-                {error && <p>{error.message}</p>}
+                {error && <p className={error}>{error.message}</p>}
             </form>
         );
     }

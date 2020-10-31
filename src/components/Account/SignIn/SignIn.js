@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
+import '../form.scss';
 import { SignUpLink } from '../SignUp/SignUp';
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/constants';
+import * as ROUTES from '../../constants/routes';
 import {PasswordForgetLink} from "../PasswordForget/PasswordForget";
 
 const SignInPage = () => (
-    <div>
-        <h1>Sign In</h1>
+    <div className='page__form'>
+        <h1 className='form__title'>Sign In</h1>
         <SignInForm/>
         <SignUpLink/>
         <PasswordForgetLink/>
@@ -53,26 +53,26 @@ class SignInFormBase extends Component {
         const isInvalid = password === '' || email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Email Address"
+            <form className='form' onSubmit={this.onSubmit}>
+                <input className='form__input'
+                       name="email"
+                       value={email}
+                       onChange={this.onChange}
+                       type="text"
+                       placeholder="Email Address"
                 />
-                <input
+                <input className='form__input'
                     name="password"
                     value={password}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
                 />
-                <button disabled={isInvalid} type="submit">
+                <button className='button' disabled={isInvalid} type="submit">
                     Sign In
                 </button>
 
-                {error && <p>{error.message}</p>}
+                {error && <p className='error'>{error.message}</p>}
             </form>
         );
     }

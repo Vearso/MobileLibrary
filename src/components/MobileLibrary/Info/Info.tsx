@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './Info.scss';
 
 
-const Info = ({showSearch,setShowSearch,search,setSearch} :any) => {
+const Info = ({showSearch,setShowSearch,setSearch} :any) => {
     const [input,setInput] = useState('');
     const handleClick = (e: any) => {
         setShowSearch((prev:any) => !prev);
@@ -30,7 +30,6 @@ const Info = ({showSearch,setShowSearch,search,setSearch} :any) => {
                     <i className={"fas fa-search"}/>
                 </button>
             </form>
-
         </div>
     )
 }

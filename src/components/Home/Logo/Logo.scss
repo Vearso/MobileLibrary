@@ -15,6 +15,9 @@
     height: 40px;
     object-fit: cover;
   }
+  .disbled {
+    display: none;
+  }
   .logo__title{
     color: $colorText;
     span{

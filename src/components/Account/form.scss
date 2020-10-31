@@ -1,0 +1,47 @@
+@import "src/styles/fonts";
+@import "src/styles/colors";
+
+.page__form {
+  font-family: $main;
+  color: $colorText;
+
+  .form__title {
+    color: $colorAccent;
+    font-family: $special;
+    font-size: 3em;
+
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    height: 300px;
+
+    .form__input {
+      margin-top: 1em;
+      padding: 0.2em;
+      width: 80%;
+
+      &::placeholder {
+        text-align: center;
+      }
+    }
+
+    .button {
+      margin-top: 2em;
+      width: 10em;
+      padding: 0.2em 0.5em;
+      background-color: $colorAccent;
+      border-radius: 10em;
+      border: none;
+    }
+
+    .error {
+      margin-top: 2em;
+      color: $colorDanger;
+      font-size: 1.5em;
+    }
+  }
+}
