@@ -45,9 +45,8 @@ class SignUpFormBase extends Component {
                         gender:'',
                         about:'',
                         favoriteGenre:'',
-                        favoriteBooks:[],
-                        queue:[],
-                        contacts:{},
+                        books: [],
+                        contacts:[],
                         inProgress:'',
                     });
             })
@@ -88,7 +87,7 @@ class SignUpFormBase extends Component {
                     value={username}
                     onChange={this.onChange}
                     type="text"
-                    placeholder="Full Name"
+                    placeholder="Username"
                 />
                 <input className='form__input'
                     name="email"

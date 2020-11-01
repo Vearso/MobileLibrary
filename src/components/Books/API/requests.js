@@ -3,7 +3,7 @@ import {PROXY_URL, API_KEY, VOLUMES_URL, ID_URL} from "./constants";
 *   projection=lite*/
 
 export const getVolumesByAuthor = (successCallback, search) => {
-    fetch(`${VOLUMES_URL}${search}&inauthor:${search}&max_results=40&key=${API_KEY}`
+    fetch(`${VOLUMES_URL}inauthor:${search}&max_results=40&key=${API_KEY}`
     )
         .then(response => response.json())
         .then(result => {
@@ -15,8 +15,6 @@ export const getVolumesByAuthor = (successCallback, search) => {
                     title: item.volumeInfo.title,
                     genre: item.volumeInfo.categories,
                     description: item.volumeInfo.description,
-                    publishedDate: item.volumeInfo.publishedDate,
-                    publisher: item.volumeInfo.publisher,
                     imageLinks: item.volumeInfo.imageLinks,
                 }];
             }
@@ -34,12 +32,12 @@ export const getVolumeByID = (successCallback,id) => {
                 title: result.volumeInfo.title,
                 genre: result.volumeInfo.categories,
                 description: result.volumeInfo.description,
-                publishedDate: result.volumeInfo.publishedDate,
-                publisher: result.volumeInfo.publisher,
                 imageLinks: result.volumeInfo.imageLinks,
+                read: false,
+                favorite: false,
             };
             if(result && typeof successCallback === 'function'){
-                successCallback(data);
+                successCallback(data)
             }
         })
 }

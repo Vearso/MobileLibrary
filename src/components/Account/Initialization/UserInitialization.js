@@ -45,7 +45,6 @@ class UserInitializationBase extends Component {
             })
             .then(() => {
                 this.setState({...initialState})
-                console.log(ROUTES.MOBILE_LIBRARY);
                 this.props.history.push(ROUTES.MOBILE_LIBRARY);
             })
             .catch(error => {
