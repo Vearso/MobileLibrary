@@ -28,11 +28,11 @@ export const getVolumeByID = (successCallback,id) => {
         .then(result => {
             let data = {
                 id: result.id,
-                authors: result.volumeInfo.authors,
-                title: result.volumeInfo.title,
-                genre: result.volumeInfo.categories,
-                description: result.volumeInfo.description,
-                imageLinks: result.volumeInfo.imageLinks,
+                authors: result.volumeInfo.authors || 'No authors available',
+                title: result.volumeInfo.title || 'No title available',
+                genre: result.volumeInfo.categories || 'No genre available',
+                description: result.volumeInfo.description || "No description available",
+                imageLinks: result.volumeInfo.imageLinks || "No photo",
                 read: false,
                 favorite: false,
             };

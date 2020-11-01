@@ -17,17 +17,17 @@
   .user__name{
     font-size: 2em;
   }
-  .description--title{
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  .user__about{
+}
 
-  }
-  .user__books{
-
-  }
-  .user__genre{
-
-  }
+.line{
+  height: 1em;
+  color: red;
+}
+.book {
+  padding: 0.5em;
+}
+.description--title{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
 }

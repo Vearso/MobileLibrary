@@ -23,9 +23,8 @@ class SpecifiedBookBase extends Component {
     componentDidMount() {
         this.props.firebase.user(this.state.userID).on('value', snapshot => {
             const userObject = snapshot.val()
-            this.setState({user: {...userObject, books: []}})
+            this.setState({user: {...userObject}})
         })
-
     }
 
     componentWillUnmount() {
@@ -34,21 +33,23 @@ class SpecifiedBookBase extends Component {
     }
 
     sendToFirebase = () => {
-        console.log(this.state.user.books);
         this.props.firebase.user(this.state.userID).update({
                 books: [
                     ...this.state.user.books,
                 ]
             }
-        )
+        ).catch(err => console.warn(err))
     }
 
     isInDatabase = () => {
-        for (let book of this.state.user.books) {
-            if (this.props.id === book.id) {
-                return true;
+        console.log(this.props.book);
+        if (this.state.user.books) {
+            for (let book of this.state.user.books) {
+                if (this.props.id === book.id) {
+                    return true;
+                }
             }
-        }
+        } else return false;
     }
 
     markBookAsOwned = () => {
@@ -73,6 +74,7 @@ class SpecifiedBookBase extends Component {
                 }
             });
     }
+
     setReadToTrue = () => {
         for (let book of this.state.user.books) {
             if (this.props.id === book.id) {
@@ -118,7 +120,7 @@ class SpecifiedBookBase extends Component {
                     <div className='book__actions'>
                         <span className="book__rating">4.2</span>
                         <div className='book__add'>
-                            <button className="button" onClick={this.markBookAsOwned}>Mark as own</button>
+                            <button className="button" disabled={this.isInDatabase()} onClick={this.markBookAsOwned}>Mark as own</button>
                             <button className="button" onClick={this.markBookAsRead}>Mark as read</button>
                             <button className="button" onClick={this.addBookToFavorites}>Add to favorties</button>
                         </div>

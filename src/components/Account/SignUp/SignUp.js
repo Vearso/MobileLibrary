@@ -46,6 +46,7 @@ class SignUpFormBase extends Component {
                         about:'',
                         favoriteGenre:'',
                         books: [],
+                        queue: [],
                         contacts:[],
                         inProgress:'',
                     });
