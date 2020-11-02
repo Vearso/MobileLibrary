@@ -43,6 +43,7 @@ class UserBooks extends Component {
             this.setState({favorites: [...tempArray]});
         })
     }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log(this.state.user.books);
     }
@@ -51,6 +52,7 @@ class UserBooks extends Component {
         this.updateFirebase();
         this.props.firebase.user(this.state.userID).off();
     }
+
     updateFirebase = () => {
         this.props.firebase.user(this.state.userID).update({
                 ...this.state.user
@@ -59,7 +61,7 @@ class UserBooks extends Component {
     }
 
     deleteBook = (id) => {
-        const keys = ['read','notRead','favorites']
+        const keys = ['read', 'notRead', 'favorites']
         let tempArray = this.state.user.books.filter(book => book.id !== id);
         let tempQueue = this.state.user.queue.filter(book => book.id !== id);
         this.setState({user: {...this.state.user, books: [...tempArray], queue: [...tempQueue]}})
@@ -74,16 +76,59 @@ class UserBooks extends Component {
         for (let book of this.state.user.books) {
             if (book.id === id) {
                 book.favorite = true;
+                console.log(book);
             }
         }
+        const tempArray = this.state.user.books.filter(book => book.favorite === true);
+        this.setState({favorites: [...tempArray]});
     }
+
+    removeFromFavorites = (id) => {
+        for (let book of this.state.user.books) {
+            if (book.id === id) {
+                book.favorite = false;
+            }
+        }
+        const tempArray = this.state.user.books.filter(book => book.favorite === true);
+        this.setState({favorites: [...tempArray]});
+    }
+
     addToQueue = (id) => {
         for (let book of this.state.user.books) {
             if (book.id === id) {
-                this.setState({user: {...this.state.user, queue: [...this.state.user.queue, book]}})
+                let isInQueue = [];
+                isInQueue = this.state.user.queue.filter(book => book.id === id);
+                isInQueue.length > 0 ? console.warn('Is in queue') : this.setState({
+                    user: {
+                        ...this.state.user,
+                        queue: [...this.state.user.queue, book]
+                    }
+                })
             }
         }
+    }
 
+    removeFromQueue = (id) => {
+        const tempArray = this.state.user.queue.filter(book => book.id !== id);
+        this.setState({user: {...this.state.user, queue: [...tempArray]}})
+    }
+
+    toggleRead = (id) => {
+        for (let book of this.state.user.books) {
+            if (book.id === id) {
+                book.read = !book.read;
+                console.log(book.read);
+            }
+        }
+        let tempArray = this.state.user.books.filter(book => book.read === true);
+        this.setState({read: [...tempArray]});
+        tempArray = this.state.user.books.filter(book => book.read === false);
+        this.setState({notRead: [...tempArray]});
+    }
+
+    markAsFinished = (id) => {
+        this.toggleRead(id);
+        this.removeFromQueue(id);
     }
 
     render() {
@@ -101,17 +146,21 @@ class UserBooks extends Component {
                             <li><Link to={`${MOBILE_LIBRARY}/user/books/queue`}>Queue</Link></li>
                         </ul>
                     </nav>
-                    {this.state.noBooks ? <Link to={`${MOBILE_LIBRARY}/search`}>First add some books</Link> : null}
+                    {this.state.noBooks
+                        ? <Link to={`${MOBILE_LIBRARY}/search`}>First add some books</Link>
+                        : <Route exact path = {`${MOBILE_LIBRARY}/user/books`} render={()=>(
+                            null
+                        )}/>}
                     <Route path={`${MOBILE_LIBRARY}/user/books/read`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Read</span>
-                                {this.state.read.map(book =>
-                                    <article className="book__container">
-                                        <Book book={book}/>
-                                        <button onClick={()=>this.deleteBook(book.id)}>Delete</button>
-                                        <button>Mark as unread</button>
-                                        <button>Add to fav</button>
-                                    </article>)}
+                            {this.state.read.map(book =>
+                                <article className="book__container">
+                                    <Book book={book}/>
+                                    <button onClick={() => this.deleteBook(book.id)}>Delete</button>
+                                    <button onClick={() => this.toggleRead(book.id)}>Mark as unread</button>
+                                    <button onClick={() => this.addToFavorites(book.id)}>Add to fav</button>
+                                </article>)}
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/notread`} render={() => (
@@ -120,10 +169,9 @@ class UserBooks extends Component {
                             {this.state.notRead.map(book =>
                                 <article className="book__container">
                                     <Book book={book}/>
-                                    <button onClick={()=>this.deleteBook(book.id)}>Delete</button>
-                                    <button>Mark as read</button>
-                                    <button>Add to fav</button>
-                                    <button>Add to queue</button>
+                                    <button onClick={() => this.deleteBook(book.id)}>Delete</button>
+                                    <button onClick={() => this.toggleRead(book.id)}>Mark as read</button>
+                                    <button onClick={() => this.addToQueue(book.id)}>Add to queue</button>
                                 </article>)}
                         </section>
                     )}/>
@@ -133,25 +181,22 @@ class UserBooks extends Component {
                             {this.state.favorites.map(book =>
                                 <article className="book__container">
                                     <Book book={book}/>
-                                    <button>Delete</button>
-                                    <button>Mark as not read</button>
-                                    <button>Remove from fav</button>
+                                    <button onClick={() => this.deleteBook(book.id)}>Delete</button>
+                                    <button onClick={() => this.removeFromFavorites(book.id)}>Remove from fav</button>
                                 </article>)}
-
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/queue`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Queue</span>
                             {this.state.noQueue ?
-                                <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Add to queue</Link>
+                                <p><Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Add to queue</Link></p>
                                 : null}
                             {this.state.user.queue.map(book =>
                                 <article className="book__container">
                                     <Book book={book}/>
-                                    <button>Delete</button>
-                                    <button>Mark as not read</button>
-                                    <button>Remove from fav</button>
+                                    <button onClick={() => this.removeFromQueue(book.id)}>Delete from queue</button>
+                                    <button onClick={() => this.markAsFinished(book.id)}>Mark as finished</button>
                                 </article>)}
                         </section>
                     )}/>
