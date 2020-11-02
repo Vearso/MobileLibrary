@@ -32,7 +32,6 @@ const App = () => {
             </div>
         </Router>
     );
-
 }
 
 export default withAuthentication(App);

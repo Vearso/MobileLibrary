@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {getVolumes} from "../../Books/API/requests";
-import {POSTER} from "../../Books/API/paths";
-import SearchedBook from "../../Books/Book/SearchedBooks/SearchedBook";
+import {getVolumes} from "../Books/API/requests";
+import {POSTER} from "../Books/API/paths";
+import SearchedBook from "../Books/Book/SearchedBooks/SearchedBook";
 import './content.scss';
 
 const Content = ({books,getBookID}) => {

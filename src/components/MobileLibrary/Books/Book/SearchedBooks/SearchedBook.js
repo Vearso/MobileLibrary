@@ -1,7 +1,7 @@
 import React, {} from 'react';
 import './SearchedBook.scss';
 import {Link} from "react-router-dom";
-import {MOBILE_LIBRARY} from "../../../constants/routes";
+import {MOBILE_LIBRARY} from "../../../../constants/routes";
 
 const SearchedBook = ({id, title, author, img , onClick}) => {
     const handleClick = () => {
