@@ -23,8 +23,8 @@ class UserPage extends Component {
     componentDidMount() {
         this.props.firebase.user(this.state.userID).on('value', snapshot => {
             let userObject = snapshot.val();
-            if(userObject.books === undefined) userObject.books = [];
-            if(userObject.queue === undefined) userObject.queue = [];
+            if (userObject.books === undefined) userObject.books = [];
+            if (userObject.queue === undefined) userObject.queue = [];
             this.setState({
                 user: {...userObject}
             })
@@ -38,16 +38,16 @@ class UserPage extends Component {
 
     render() {
         const user = this.state.user
-        if(user.name !== undefined)
-        return (
-            <>
-                <UserInfo user={user}/>
-                <hr className='line'/>
-                <UserFavoritesBooks user={user}/>
-                <hr className='line'/>
-                <UserBooksInQueue user={user}/>
-            </>
-        )
+        if (user.name !== undefined)
+            return (
+                <>
+                    <UserInfo user={user}/>
+                    <hr className='line'/>
+                    <UserFavoritesBooks user={user}/>
+                    <hr className='line'/>
+                    <UserBooksInQueue user={user}/>
+                </>
+            )
         else return null;
     }
 
@@ -74,7 +74,7 @@ const UserFavoritesBooks = ({user}) => {
         <section className="user__favorites">
             <span className="description--title">Favorites</span>
             <div className="favorites">
-                {books.map((book,index) => index >= 3 ? null : <Book book={book}/>)}
+                {books.map((book, index) => index >= 3 ? null : <Book key={index} book={book}/>)}
                 <p>{books.length >= 3
                     ? <Link to={`${MOBILE_LIBRARY}/user/books/favorites`}>More</Link>
                     : <Link to={`${MOBILE_LIBRARY}/user/books/read`}>Add to favorites</Link>}</p>
@@ -86,7 +86,7 @@ const UserFavoritesBooks = ({user}) => {
 export const Book = ({book}) => {
 
     return (
-        <div className="book" key={book.id}>
+        <div className="book">
             <img className="book__poster" src={book.imageLinks.smallThumbnail}
                  alt="Book cover"/>
             <p className="book__title">{book.title}</p>
@@ -99,9 +99,9 @@ const UserBooksInQueue = ({user}) => {
         <section className="user__queue">
             <span className="description--title">Queue</span>
             <div className="queue">
-                {user.queue.map((book,index) => index>=3 ? null : <Book book={book}/>)}
-                <p>{user.queue.length > 0 ?
-                    <Link to={`${MOBILE_LIBRARY}/user/books`}>More</Link>
+                {user.queue.map((book, index) => index >= 3 ? null : <Book key={index} book={book}/>)}
+                <p>{user.queue.length > 0
+                    ? <Link to={`${MOBILE_LIBRARY}/user/books`}>More</Link>
                     : <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Set up a queue</Link>}</p>
             </div>
         </section>
