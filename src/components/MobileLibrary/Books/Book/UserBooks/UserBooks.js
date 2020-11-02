@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './UserBooks.scss';
 import {withFirebase} from "../../../User/Account/Firebase"
-import {Book} from "../../../User/UserPage/UserPage";
+import {Book} from "../../../Content/UserPage/UserPage";
 import {Route, Link} from "react-router-dom";
 import {MOBILE_LIBRARY} from "../../../../constants/routes";
 

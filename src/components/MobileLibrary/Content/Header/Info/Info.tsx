@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './Info.scss';
-import {MOBILE_LIBRARY} from "../../constants/routes";
+import {MOBILE_LIBRARY} from "../../../../constants/routes";
 import {useHistory} from "react-router"
 
 const Info = ({showSearch, setShowSearch, setSearch}: any) => {

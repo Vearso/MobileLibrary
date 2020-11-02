@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import man from './man.png';
 import woman from './woman.png';
 import './UserPage.scss';
-import {withFirebase} from '../Account/Firebase';
+import {withFirebase} from '../../User/Account/Firebase';
 import {Link} from "react-router-dom";
 import {MOBILE_LIBRARY} from "../../../constants/routes";
 

@@ -2,8 +2,8 @@ import {API_KEY, VOLUMES_URL, ID_URL} from "./constants";
 /*  max_results=30
 *   projection=lite*/
 
-export const getVolumesByAuthor = (successCallback, search) => {
-    fetch(`${VOLUMES_URL}inauthor:${search}&max_results=40&key=${API_KEY}`
+export const getVolumes = (successCallback, search, searchBy) => {
+    fetch(`${VOLUMES_URL}${searchBy}:${search}&max_results=40&key=${API_KEY}`
     )
         .then(response => response.json())
         .then(result => {

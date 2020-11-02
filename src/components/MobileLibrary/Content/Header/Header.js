@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import Logo from "../../Home/Logo/Logo";
-import Avatar from "../Avatar/Avatar";
-import Info from "../Info/Info";
+import Logo from "../../../Home/Logo/Logo";
+import Avatar from "./Avatar/Avatar";
+import Info from "./Info/Info";
 import './Header.scss';
-import Navigation from "../Navigation/Navigation";
-import {MOBILE_LIBRARY} from "../../constants/routes";
+import Navigation from "./Navigation/Navigation";
+import {MOBILE_LIBRARY} from "../../../constants/routes";
 import {Link} from "react-router-dom";
 
 const Header = ({setSearch}) => {
