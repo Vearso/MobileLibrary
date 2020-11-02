@@ -18,15 +18,14 @@ class UserBooks extends Component {
             notRead: [],
             read: [],
             favorites: [],
-            noBooks: true,
-            noQueue: true,
+            noBooks: false,
+            noQueue: false,
         }
     }
 
     componentDidMount() {
         this.props.firebase.user(this.state.userID).on('value', snapshot => {
             const userObject = snapshot.val();
-            console.log(userObject);
             if (userObject.books === undefined || userObject.books.length === 0) {
                 userObject.books = [];
                 this.setState({noBooks: true});
@@ -44,21 +43,32 @@ class UserBooks extends Component {
             this.setState({favorites: [...tempArray]});
         })
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.state.user.books);
+    }
 
     componentWillUnmount() {
         this.updateFirebase();
         this.props.firebase.user(this.state.userID).off();
     }
-
     updateFirebase = () => {
         this.props.firebase.user(this.state.userID).update({
                 ...this.state.user
             }
         ).catch(err => console.warn(err))
     }
+
     deleteBook = (id) => {
-        const tempArray = this.state.user.books.map(book => book.id !== id);
-        this.setState({user: {...this.state.user, books: [...tempArray]}})
+        const keys = ['read','notRead','favorites']
+        let tempArray = this.state.user.books.filter(book => book.id !== id);
+        let tempQueue = this.state.user.queue.filter(book => book.id !== id);
+        this.setState({user: {...this.state.user, books: [...tempArray], queue: [...tempQueue]}})
+        keys.forEach(key => {
+            tempArray = this.state[key].filter(book => book.id !== id);
+            this.setState({[key]: [...tempArray]});
+        })
+
+
     }
     addToFavorites = (id) => {
         for (let book of this.state.user.books) {
@@ -82,7 +92,7 @@ class UserBooks extends Component {
             return (<Link to={`${MOBILE_LIBRARY}/search`}>First add some books</Link>);
         } else
             return (
-                <>
+                <section className="user__books--page">
                     <nav className='user__books--nav'>
                         <ul className="nav__list">
                             <li><Link to={`${MOBILE_LIBRARY}/user/books/read`}>Read</Link></li>
@@ -95,63 +105,57 @@ class UserBooks extends Component {
                     <Route path={`${MOBILE_LIBRARY}/user/books/read`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Read</span>
-                            <div className="book__container">
                                 {this.state.read.map(book =>
-                                    <>
+                                    <article className="book__container">
                                         <Book book={book}/>
-                                        <button>Delete</button>
+                                        <button onClick={()=>this.deleteBook(book.id)}>Delete</button>
                                         <button>Mark as unread</button>
                                         <button>Add to fav</button>
-                                    </>)}
-                            </div>
+                                    </article>)}
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/notread`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Not Read</span>
-                            <div className="book__container">
-                                {this.state.notRead.map(book =>
-                                    <>
-                                        <Book book={book}/>
-                                        <button>Delete</button>
-                                        <button>Mark as read</button>
-                                        <button>Add to fav</button>
-                                        <button>Add to queue</button>
-                                    </>)}
-                            </div>
+                            {this.state.notRead.map(book =>
+                                <article className="book__container">
+                                    <Book book={book}/>
+                                    <button onClick={()=>this.deleteBook(book.id)}>Delete</button>
+                                    <button>Mark as read</button>
+                                    <button>Add to fav</button>
+                                    <button>Add to queue</button>
+                                </article>)}
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/favorites`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Favorites</span>
-                            <div className="book__container">
-                                {this.state.favorites.map(book =>
-                                    <>
-                                        <Book book={book}/>
-                                        <button>Delete</button>
-                                        <button>Mark as not read</button>
-                                        <button>Remove from fav</button>
-                                    </>)}
-                            </div>
+                            {this.state.favorites.map(book =>
+                                <article className="book__container">
+                                    <Book book={book}/>
+                                    <button>Delete</button>
+                                    <button>Mark as not read</button>
+                                    <button>Remove from fav</button>
+                                </article>)}
+
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/queue`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Queue</span>
                             {this.state.noQueue ?
-                                <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Add to queue</Link> : null}
-                            <div className="book__container">
-                                {this.state.user.queue.map(book =>
-                                    <>
-                                        <Book book={book}/>
-                                        <button>Delete</button>
-                                        <button>Mark as not read</button>
-                                        <button>Remove from fav</button>
-                                    </>)}
-                            </div>
+                                <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Add to queue</Link>
+                                : null}
+                            {this.state.user.queue.map(book =>
+                                <article className="book__container">
+                                    <Book book={book}/>
+                                    <button>Delete</button>
+                                    <button>Mark as not read</button>
+                                    <button>Remove from fav</button>
+                                </article>)}
                         </section>
                     )}/>
-                </>
+                </section>
             )
     }
 }

@@ -16,15 +16,24 @@ class SpecifiedBookBase extends Component {
 
         this.state = {
             userID: this.props.firebase.auth.currentUser.uid,
-            user: [],
+            user: {
+                books:[],
+            },
         }
     }
 
+
     componentDidMount() {
         this.props.firebase.user(this.state.userID).on('value', snapshot => {
-            const userObject = snapshot.val()
+            let userObject = snapshot.val()
+            if(userObject.books === undefined){
+                userObject.books = [];
+            }
             this.setState({user: {...userObject}})
         })
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.state.user);
     }
 
     componentWillUnmount() {
@@ -42,7 +51,6 @@ class SpecifiedBookBase extends Component {
     }
 
     isInDatabase = () => {
-        console.log(this.props.book);
         if (this.state.user.books) {
             for (let book of this.state.user.books) {
                 if (this.props.id === book.id) {
@@ -93,6 +101,7 @@ class SpecifiedBookBase extends Component {
                         ...this.state.user.books, {
                             ...this.props.book,
                             favorite: true,
+                            read: true,
                         }
                     ]
                 }
@@ -103,6 +112,7 @@ class SpecifiedBookBase extends Component {
         for (let book of this.state.user.books) {
             if (this.props.id === book.id) {
                 book.favorite = true;
+                book.read = true;
             }
         }
     }

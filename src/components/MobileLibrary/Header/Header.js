@@ -18,7 +18,7 @@ const Header = ({setSearch}) => {
             <Info showSearch={showSearch} setShowSearch={setShowSearch} setSearch={setSearch}/>
             <Avatar setShow={setShowMenu}/>
             </div>
-            <Navigation show={showMenu}/>
+            <Navigation show={showMenu} setShow={setShowMenu}/>
         </header>
     )
 }

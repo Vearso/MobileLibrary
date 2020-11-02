@@ -38,6 +38,7 @@ class UserPage extends Component {
 
     render() {
         const user = this.state.user
+        if(user.name !== undefined)
         return (
             <>
                 <UserInfo user={user}/>
@@ -46,7 +47,8 @@ class UserPage extends Component {
                 <hr className='line'/>
                 <UserBooksInQueue user={user}/>
             </>
-        );
+        )
+        else return null;
     }
 
 }
@@ -73,7 +75,7 @@ const UserFavoritesBooks = ({user}) => {
             <span className="description--title">Favorites</span>
             <div className="favorites">
                 {books.map((book,index) => index >= 3 ? null : <Book book={book}/>)}
-                <p>{books.length > 0
+                <p>{books.length >= 3
                     ? <Link to={`${MOBILE_LIBRARY}/user/books/favorites`}>More</Link>
                     : <Link to={`${MOBILE_LIBRARY}/user/books/read`}>Add to favorites</Link>}</p>
             </div>
@@ -84,7 +86,7 @@ const UserFavoritesBooks = ({user}) => {
 export const Book = ({book}) => {
 
     return (
-        <div className="book">
+        <div className="book" key={book.id}>
             <img className="book__poster" src={book.imageLinks.smallThumbnail}
                  alt="Book cover"/>
             <p className="book__title">{book.title}</p>

@@ -1,0 +1,42 @@
+//<>
+//<nav className='user__books--nav'>
+//<ul className="nav__list">
+//<section className="user__books">
+//<span className="description--title">Read</span>
+//<div className="book__container">
+@import "src/styles/colors";
+
+.user__books--page {
+
+  .user__books--nav {
+    background-color: $colorSecondary;
+
+    .nav__list {
+
+      display: flex;
+      justify-content: center;
+
+      li {
+        padding: 0.5em;
+
+        &:hover {
+          background-color: $colorAccent;
+        }
+      }
+    }
+  }
+
+  .user__books{
+    .book__container{
+      .book__title{
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      button{
+        background-color: $colorAccent;
+        border: none;
+        border-radius: 5em;
+      }
+    }
+  }
+}
