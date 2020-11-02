@@ -31,7 +31,7 @@ function MobileLibrary() {
     return (
         <div className="MobileLibrary">
             <Header setSearch={handleSearch}/>
-            <Route exact path={MOBILE_LIBRARY} render={(props)=>(<MainPage/>)}/>
+            {/*<Route exact path={MOBILE_LIBRARY} render={(props)=>(<MainPage/>)}/>*/}
             <Route path={`${MOBILE_LIBRARY}/books/${bookID}`} render={(props) => (<SpecifiedBookPage book={book} id={bookID}/>)}/>
             <Route exact path={`${MOBILE_LIBRARY}/user`} component={UserPage}/>
             <Route path={`${MOBILE_LIBRARY}/user/books`} component={UserBooks}/>
