@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import {withAuthorization} from "../../components/MobileLibrary/User/Account/Session";
 import Header from "../../components/MobileLibrary/Content/Header/Header";
 import {getVolumeByID, getVolumes} from "../../components/MobileLibrary/Books/API/requests";
-import MainPage from "../../components/MobileLibrary/Content/MainPage/MainPage";
 import {Route} from "react-router-dom";
 import {MOBILE_LIBRARY} from "../../components/constants/routes";
 import SpecifiedBookPage from "../../components/MobileLibrary/Books/Book/SpecifiedBookPage/SpecifiedBookPage";
