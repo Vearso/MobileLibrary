@@ -10,6 +10,7 @@ import SpecifiedBookPage from "../../components/MobileLibrary/Books/Book/Specifi
 import UserPage from "../../components/MobileLibrary/Content/UserPage/UserPage";
 import UserBooks from '../../components/MobileLibrary/Books/Book/UserBooks/UserBooks';
 import SearchPage from "../../components/MobileLibrary/Content/SearchPage/SearchPage";
+import SettingsPage from "../../components/MobileLibrary/Content/SettingsPage/SettingsPage";
 
 
 function MobileLibrary() {
@@ -36,7 +37,7 @@ function MobileLibrary() {
             <Route exact path={`${MOBILE_LIBRARY}/user`} component={UserPage}/>
             <Route path={`${MOBILE_LIBRARY}/user/books`} component={UserBooks}/>
             <Route path={`${MOBILE_LIBRARY}/search`} render={()=><SearchPage books={books} getBookID={handleBookID}/>}/>
-            {/*<Route path={`${MOBILE_LIBRARY}/settings`} component={Settings}/>*/}
+            <Route path={`${MOBILE_LIBRARY}/user/settings`} component={SettingsPage}/>
         </div>
     );
 }
