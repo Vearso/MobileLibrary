@@ -1,6 +1,6 @@
 import './MobileLibrary.scss';
 import React, {useEffect, useState} from "react";
-import {withAuthorization} from "../../components/Account/Session";
+import {withAuthorization} from "../../components/MobileLibrary/User/Account/Session";
 import Header from "../../components/MobileLibrary/Header/Header";
 import {getVolumeByID, getVolumesByAuthor} from "../../components/MobileLibrary/Books/API/requests";
 import Content from "../../components/MobileLibrary/Content/content";

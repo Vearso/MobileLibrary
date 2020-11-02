@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import SignOutButton from "../../Account/SignOut/SignOut";
+import SignOutButton from "../User/Account/SignOut/SignOut";
 import './Navigation.scss';
 import {Link} from "react-router-dom";
 import {MOBILE_LIBRARY} from "../../constants/routes";

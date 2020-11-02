@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import '../form.scss';
 import { SignUpLink } from '../SignUp/SignUp';
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from '../../../../constants/routes';
 import {PasswordForgetLink} from "../PasswordForget/PasswordForget";
 
 const SignInPage = () => (

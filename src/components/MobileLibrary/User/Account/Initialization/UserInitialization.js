@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {compose} from "recompose";
 import {withRouter} from "react-router-dom";
 import {withFirebase} from "../Firebase";
-import * as ROUTES from "../../constants/routes";
+import * as ROUTES from "../../../../constants/routes";
 
 const UserInitializationPage = () => {
     return (
@@ -16,7 +16,7 @@ const UserInitializationPage = () => {
 const initialState = {
     name: '',
     surname: '',
-    gender: '',
+    gender: 'Man',
     about: '',
     favorite: '',
 }

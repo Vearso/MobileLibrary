@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {compose} from 'recompose';
 import {withFirebase} from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from '../../../../constants/routes';
 
 import '../form.scss';
 
@@ -40,15 +40,6 @@ class SignUpFormBase extends Component {
                     .set({
                         username,
                         email,
-                        name:'',
-                        surname:'',
-                        gender:'',
-                        about:'',
-                        favoriteGenre:'',
-                        books: [],
-                        queue: [],
-                        contacts:[],
-                        inProgress:'',
                     });
             })
             .then(() => {

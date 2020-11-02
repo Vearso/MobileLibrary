@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import App from "./layouts/App/App";
-import Firebase, { FirebaseContext } from './components/Account/Firebase';
+import Firebase, { FirebaseContext } from './components/MobileLibrary/User/Account/Firebase';
 
 
 // @ts-ignore

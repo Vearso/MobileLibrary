@@ -4,14 +4,14 @@ import Home from "../Home/Home";
 import MobileLibrary from '../MobileLibrary/MobileLibrary';
 import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
 import * as ROUTES from '../../components/constants/routes';
-import SignUpPage from "../../components/Account/SignUp/SignUp";
-import SignInPage from "../../components/Account/SignIn/SignIn";
-import {withAuthentication} from "../../components/Account/Session";
-import PasswordForgetPage from "../../components/Account/PasswordForget/PasswordForget";
-import AdminPage from "../../components/Account/Admin/Admin";
-import AccountPage from "../../components/Account/Account";
-import PasswordChangeForm from "../../components/Account/PasswordChange/PasswordChange";
-import UserInitializationPage from "../../components/Account/Initialization/UserInitialization";
+import SignUpPage from "../../components/MobileLibrary/User/Account/SignUp/SignUp";
+import SignInPage from "../../components/MobileLibrary/User/Account/SignIn/SignIn";
+import {withAuthentication} from "../../components/MobileLibrary/User/Account/Session";
+import PasswordForgetPage from "../../components/MobileLibrary/User/Account/PasswordForget/PasswordForget";
+import AdminPage from "../../components/MobileLibrary/User/Account/Admin/Admin";
+import AccountPage from "../../components/MobileLibrary/User/Account/Account";
+import PasswordChangeForm from "../../components/MobileLibrary/User/Account/PasswordChange/PasswordChange";
+import UserInitializationPage from "../../components/MobileLibrary/User/Account/Initialization/UserInitialization";
 
 const App = () => {
 

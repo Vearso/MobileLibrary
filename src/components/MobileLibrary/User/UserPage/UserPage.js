@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import man from './man.png';
 import woman from './woman.png';
 import './UserPage.scss';
-import {withFirebase} from '../../../Account/Firebase';
+import {withFirebase} from '../Account/Firebase';
 import {Link} from "react-router-dom";
 import {MOBILE_LIBRARY} from "../../../constants/routes";
 
@@ -22,16 +22,11 @@ class UserPage extends Component {
 
     componentDidMount() {
         this.props.firebase.user(this.state.userID).on('value', snapshot => {
-            const userObject = snapshot.val();
+            let userObject = snapshot.val();
+            if(userObject.books === undefined) userObject.books = [];
+            if(userObject.queue === undefined) userObject.queue = [];
             this.setState({
-                user: {
-                    ...userObject,
-                    books: [
-                        ...userObject.books],
-                    queue: [
-                        ...userObject.queue || []]
-
-                }
+                user: {...userObject}
             })
             this.setState({loading: false});
         })
@@ -78,13 +73,15 @@ const UserFavoritesBooks = ({user}) => {
             <span className="description--title">Favorites</span>
             <div className="favorites">
                 {books.map((book,index) => index >= 3 ? null : <Book book={book}/>)}
-                <p>{books.length > 0 ? <Link to={`${MOBILE_LIBRARY}/user/favorites`}>More</Link> : <Link to={`${MOBILE_LIBRARY}/user/books`}>Add to favorites</Link>}</p>
+                <p>{books.length > 0
+                    ? <Link to={`${MOBILE_LIBRARY}/user/books/favorites`}>More</Link>
+                    : <Link to={`${MOBILE_LIBRARY}/user/books/read`}>Add to favorites</Link>}</p>
             </div>
         </section>
     )
 }
 
-const Book = ({book}) => {
+export const Book = ({book}) => {
 
     return (
         <div className="book">
@@ -101,7 +98,9 @@ const UserBooksInQueue = ({user}) => {
             <span className="description--title">Queue</span>
             <div className="queue">
                 {user.queue.map((book,index) => index>=3 ? null : <Book book={book}/>)}
-                <p>{user.queue.length > 0 ? <Link to={`${MOBILE_LIBRARY}/user/queue`}>More</Link> : <Link to={`${MOBILE_LIBRARY}/user/books`}>Set up a queue</Link>}</p>
+                <p>{user.queue.length > 0 ?
+                    <Link to={`${MOBILE_LIBRARY}/user/books`}>More</Link>
+                    : <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Set up a queue</Link>}</p>
             </div>
         </section>
     )
