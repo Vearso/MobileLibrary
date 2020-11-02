@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 const FirebaseContext = React.createContext<ContextValue>(null);
 
 export type ContextValue = null | any;

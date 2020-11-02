@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import SignOutButton from "../User/Account/SignOut/SignOut";
 import './Navigation.scss';
 import {Link} from "react-router-dom";

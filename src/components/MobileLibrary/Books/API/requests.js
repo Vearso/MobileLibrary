@@ -1,4 +1,4 @@
-import {PROXY_URL, API_KEY, VOLUMES_URL, ID_URL} from "./constants";
+import {API_KEY, VOLUMES_URL, ID_URL} from "./constants";
 /*  max_results=30
 *   projection=lite*/
 
@@ -32,7 +32,7 @@ export const getVolumeByID = (successCallback,id) => {
                 title: result.volumeInfo.title || 'No title available',
                 genre: result.volumeInfo.categories || 'No genre available',
                 description: result.volumeInfo.description || "No description available",
-                imageLinks: result.volumeInfo.imageLinks || "No photo",
+                imageLinks: result.volumeInfo.imageLinks || "No photo available",
                 read: false,
                 favorite: false,
             };

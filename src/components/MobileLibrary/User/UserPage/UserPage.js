@@ -56,7 +56,7 @@ const UserInfo = ({user}) => {
     return (
         <section className="user__info">
             <img className="user__photo" src={user.gender === 'Man' ? man : woman}
-                 alt={`Photo of ${user.name} ${user.surname}`}/>
+                 alt={`${user.name} ${user.surname}`}/>
             <h3 className="user__name">{user.name} {user.surname}</h3>
             <span className='description--title'>About me:</span>
             <p className="user__about">{user.about}</p>

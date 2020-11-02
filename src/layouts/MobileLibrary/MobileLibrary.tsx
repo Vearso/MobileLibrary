@@ -33,7 +33,6 @@ function MobileLibrary() {
     return (
         <div className="MobileLibrary">
             <Header setSearch={handleSearch}/>
-            <h2/>
             <Route exact path={MOBILE_LIBRARY} render={(props)=>(<Content books={books} getBookID={handleBookID}/>)}/>
             <Route path={`${MOBILE_LIBRARY}/books/${bookID}`} render={(props) => (<SpecifiedBookPage book={book} id={bookID}/>)}/>
             <Route exact path={`${MOBILE_LIBRARY}/user`} component={UserPage}/>
