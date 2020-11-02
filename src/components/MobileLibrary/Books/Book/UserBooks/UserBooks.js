@@ -148,8 +148,24 @@ class UserBooks extends Component {
                     </nav>
                     {this.state.noBooks
                         ? <Link to={`${MOBILE_LIBRARY}/search`}>First add some books</Link>
-                        : <Route exact path = {`${MOBILE_LIBRARY}/user/books`} render={()=>(
-                            null
+                        : <Route exact path={`${MOBILE_LIBRARY}/user/books`} render={() => (
+                            <section className="user__books">
+                                <span className="description--title">All books</span>
+                                {this.state.user.books.map(book =>
+                                    <article className="book__container">
+                                        <Book book={book}/>
+                                        <button onClick={() => this.deleteBook(book.id)}>delete</button>
+                                        {book.read
+                                            ? <button onClick={() => this.toggleRead(book.id)}>Mark as not read</button>
+                                            : <button onClick={() => this.toggleRead(book.id)}>Mark as read</button>}
+                                        {book.favorite
+                                            ? <button onClick={() => this.addToFavorites(book.id)}>Add to fav</button>
+                                            : <button onClick={() => this.removeFromFavorites(book.id)}>
+                                                Remove from fav
+                                            </button>}
+                                    </article>
+                                )}
+                            </section>
                         )}/>}
                     <Route path={`${MOBILE_LIBRARY}/user/books/read`} render={() => (
                         <section className="user__books">
