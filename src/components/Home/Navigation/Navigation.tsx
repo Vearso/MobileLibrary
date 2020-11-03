@@ -10,7 +10,9 @@ const Navigation = () => {
     }
     return(
       <nav className="header__nav">
-          <button className="nav__hamburger" onClick={e =>handleClick(e)}><i className='nav__hamburger--icon far fa-bars'/></button>
+          <button className="nav__hamburger" onClick={e =>handleClick(e)}>
+              <i className='fas fa-bars nav__hamburger--icon'/>
+          </button>
           <ul className={showMenu ? "nav__list--show" : "nav__list--hidden nav__list"}>
               <li><Link to={ROUTES.LANDING} onClick={()=>setShowMenu(false)}>Home</Link></li>
               <li><a href={'#about'} onClick={()=>setShowMenu(false)}>About</a></li>

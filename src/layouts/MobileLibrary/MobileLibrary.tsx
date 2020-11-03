@@ -1,5 +1,5 @@
 import './MobileLibrary.scss';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {withAuthorization} from "../../components/MobileLibrary/User/Account/Session";
 import Header from "../../components/MobileLibrary/Content/Header/Header";
 import {getVolumeByID, getVolumes} from "../../components/MobileLibrary/Books/API/requests";
@@ -10,6 +10,7 @@ import UserPage from "../../components/MobileLibrary/Content/UserPage/UserPage";
 import UserBooks from '../../components/MobileLibrary/Books/Book/UserBooks/UserBooks';
 import SearchPage from "../../components/MobileLibrary/Content/SearchPage/SearchPage";
 import SettingsPage from "../../components/MobileLibrary/Content/SettingsPage/SettingsPage";
+import MainPage from "../../components/MobileLibrary/Content/MainPage/MainPage";
 
 
 function MobileLibrary() {
@@ -22,16 +23,18 @@ function MobileLibrary() {
         getBookID(id)
         getVolumeByID(setBook,id);
     }
-
     const handleSearch = (value :any) => {
         setSearch(value)
-        getVolumes(setBooks,search,'inauthor');
     }
+
+    useEffect(()=>{
+        getVolumes(setBooks,search,'inauthor');
+    },[search]);
 
     return (
         <div className="MobileLibrary">
             <Header setSearch={handleSearch}/>
-            {/*<Route exact path={MOBILE_LIBRARY} render={(props)=>(<MainPage/>)}/>*/}
+            <Route exact path={MOBILE_LIBRARY} render={(props)=>(<MainPage/>)}/>
             <Route path={`${MOBILE_LIBRARY}/books/${bookID}`} render={(props) => (<SpecifiedBookPage book={book} id={bookID}/>)}/>
             <Route exact path={`${MOBILE_LIBRARY}/user`} component={UserPage}/>
             <Route path={`${MOBILE_LIBRARY}/user/books`} component={UserBooks}/>

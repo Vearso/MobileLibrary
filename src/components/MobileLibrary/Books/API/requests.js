@@ -11,11 +11,13 @@ export const getVolumes = (successCallback, search, searchBy) => {
             for (let item of result.items) {
                 data = [...data, {
                     id: item.id,
-                    authors: item.volumeInfo.authors,
-                    title: item.volumeInfo.title,
-                    genre: item.volumeInfo.categories,
-                    description: item.volumeInfo.description,
-                    imageLinks: item.volumeInfo.imageLinks,
+                    authors: item.volumeInfo.authors || 'No authors available',
+                    title: item.volumeInfo.title || 'No title available',
+                    genre: item.volumeInfo.categories || 'No genre available',
+                    description: item.volumeInfo.description || 'No description available',
+                    imageLinks: item.volumeInfo.imageLinks || 'No image available',
+                    read: false,
+                    favorite: false,
                 }];
             }
             successCallback(data);

@@ -5,6 +5,7 @@ import {Book} from "../../../Content/UserPage/UserPage";
 import {Route, Link} from "react-router-dom";
 import {MOBILE_LIBRARY} from "../../../../constants/routes";
 
+
 class UserBooks extends Component {
     constructor(props) {
         super(props);
@@ -35,17 +36,13 @@ class UserBooks extends Component {
                 this.setState({noQueue: true});
             }
             this.setState({user: {...userObject}})
-            let tempArray = this.state.user.books.filter(book => book.read === false);
+            let tempArray = userObject.books.filter(book => book.read === false);
             this.setState({notRead: [...tempArray]});
-            tempArray = this.state.user.books.filter(book => book.read === true);
+            tempArray = userObject.books.filter(book => book.read === true);
             this.setState({read: [...tempArray]});
-            tempArray = this.state.user.books.filter(book => book.favorite === true);
+            tempArray = userObject.books.filter(book => book.favorite === true);
             this.setState({favorites: [...tempArray]});
         })
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.state.user.books);
     }
 
     componentWillUnmount() {
@@ -154,15 +151,29 @@ class UserBooks extends Component {
                                 {this.state.user.books.map(book =>
                                     <article className="book__container">
                                         <Book book={book}/>
-                                        <button onClick={() => this.deleteBook(book.id)}>delete</button>
-                                        {book.read
-                                            ? <button onClick={() => this.toggleRead(book.id)}>Mark as not read</button>
-                                            : <button onClick={() => this.toggleRead(book.id)}>Mark as read</button>}
-                                        {book.favorite
-                                            ? <button onClick={() => this.addToFavorites(book.id)}>Add to fav</button>
-                                            : <button onClick={() => this.removeFromFavorites(book.id)}>
-                                                Remove from fav
-                                            </button>}
+                                        <div className="book__actions">
+                                            <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
+                                                className='fas fa-trash'/>
+                                            </div>
+                                            {book.read
+                                                ? <div className='icon icon__green'
+                                                       onClick={() => this.toggleRead(book.id)}>
+                                                    <i className='fas fa-check'/>
+                                                </div>
+                                                : <div className='icon icon__red'
+                                                       onClick={() => this.toggleRead(book.id)}>
+                                                    <i className='fas fa-check'/>
+                                                </div>}
+                                            {book.favorite
+                                                ? <div className='icon icon__red'
+                                                       onClick={() => this.removeFromFavorites(book.id)}>
+                                                    <i className="fas fa-star"/>
+                                                </div>
+                                                : <div className='icon icon__green'
+                                                       onClick={() => this.addToFavorites(book.id)}>
+                                                    <i className="fas fa-star"/>
+                                                </div>}
+                                        </div>
                                     </article>
                                 )}
                             </section>
@@ -173,9 +184,17 @@ class UserBooks extends Component {
                             {this.state.read.map(book =>
                                 <article className="book__container">
                                     <Book book={book}/>
-                                    <button onClick={() => this.deleteBook(book.id)}>Delete</button>
-                                    <button onClick={() => this.toggleRead(book.id)}>Mark as unread</button>
-                                    <button onClick={() => this.addToFavorites(book.id)}>Add to fav</button>
+                                    <div className="book__actions">
+                                        <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
+                                            className='fas fa-trash'/>
+                                        </div>
+                                        <div className='icon icon__accent' onClick={() => this.toggleRead(book.id)}>
+                                            <i className='fas fa-check'/>
+                                        </div>
+                                        <div className='icon icon__accent' onClick={() => this.addToFavorites(book.id)}>
+                                            <i className="fas fa-star"/>
+                                        </div>
+                                    </div>
                                 </article>)}
                         </section>
                     )}/>
@@ -185,9 +204,17 @@ class UserBooks extends Component {
                             {this.state.notRead.map(book =>
                                 <article className="book__container">
                                     <Book book={book}/>
-                                    <button onClick={() => this.deleteBook(book.id)}>Delete</button>
-                                    <button onClick={() => this.toggleRead(book.id)}>Mark as read</button>
-                                    <button onClick={() => this.addToQueue(book.id)}>Add to queue</button>
+                                    <div className="book__actions">
+                                        <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
+                                            className='fas fa-trash'/>
+                                        </div>
+                                        <div className='icon icon__accent' onClick={() => this.toggleRead(book.id)}>
+                                            <i className='fas fa-check'/>
+                                        </div>
+                                        <div className='icon icon__accent' onClick={() => this.addToQueue(book.id)}><i
+                                            className="fas fa-sort-numeric-down"/>
+                                        </div>
+                                    </div>
                                 </article>)}
                         </section>
                     )}/>
@@ -197,8 +224,15 @@ class UserBooks extends Component {
                             {this.state.favorites.map(book =>
                                 <article className="book__container">
                                     <Book book={book}/>
-                                    <button onClick={() => this.deleteBook(book.id)}>Delete</button>
-                                    <button onClick={() => this.removeFromFavorites(book.id)}>Remove from fav</button>
+                                    <div className="book__actions">
+                                        <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
+                                            className='fas fa-trash'/>
+                                        </div>
+                                        <div className='icon icon__accent'
+                                             onClick={() => this.removeFromFavorites(book.id)}>
+                                            <i className="fas fa-star"/>
+                                        </div>
+                                    </div>
                                 </article>)}
                         </section>
                     )}/>
@@ -211,8 +245,14 @@ class UserBooks extends Component {
                             {this.state.user.queue.map(book =>
                                 <article className="book__container">
                                     <Book book={book}/>
-                                    <button onClick={() => this.removeFromQueue(book.id)}>Delete from queue</button>
-                                    <button onClick={() => this.markAsFinished(book.id)}>Mark as finished</button>
+                                    <div className="book__actions">
+                                        <div className=' icon icon__red' onClick={() => this.removeFromQueue(book.id)}>
+                                            <i className='fas fa-trash'/>
+                                        </div>
+                                        <div className='icon icon__accent' onClick={() => this.markAsFinished(book.id)}>
+                                            <i className='fas fa-check'/>
+                                        </div>
+                                    </div>
                                 </article>)}
                         </section>
                     )}/>

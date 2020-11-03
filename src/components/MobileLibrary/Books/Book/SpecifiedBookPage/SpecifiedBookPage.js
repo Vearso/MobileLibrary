@@ -3,11 +3,13 @@ import React, {Component} from 'react';
 import './SpecifiedBookPage.scss';
 import {withFirebase} from "../../../User/Account/Firebase";
 
+
 const SpecifiedBookPage = ({id, book}) => {
     return (
-        <SpecifiedBook book={book} id={id}/>
+        <>
+            <SpecifiedBook book={book} id={id}/>
+        </>
     )
-
 }
 
 class SpecifiedBookBase extends Component {
@@ -17,7 +19,7 @@ class SpecifiedBookBase extends Component {
         this.state = {
             userID: this.props.firebase.auth.currentUser.uid,
             user: {
-                books:[],
+                books: [],
             },
         }
     }
@@ -26,12 +28,13 @@ class SpecifiedBookBase extends Component {
     componentDidMount() {
         this.props.firebase.user(this.state.userID).on('value', snapshot => {
             let userObject = snapshot.val()
-            if(userObject.books === undefined){
+            if (userObject.books === undefined) {
                 userObject.books = [];
             }
             this.setState({user: {...userObject}})
         })
     }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log(this.state.user);
     }
@@ -59,14 +62,34 @@ class SpecifiedBookBase extends Component {
             }
         } else return false;
     }
+    isRead = () => {
+        if (this.state.user.books) {
+            for (let book of this.state.user.books) {
+                if (this.props.id === book.id) {
+                    return book.read;
+                }
+            }
+        }
+    }
+    isFavorite = () => {
+        if (this.state.user.books) {
+            for (let book of this.state.user.books) {
+                if (this.props.id === book.id) {
+                    return book.favorite;
+                }
+            }
+        }
+    }
 
     markBookAsOwned = () => {
+        this.setState({own: true});
         this.isInDatabase()
             ? console.warn('Is in database')
             : this.setState({user: {...this.state.user, books: [...(this.state.user.books || []), this.props.book]}});
     }
 
     markBookAsRead = () => {
+        this.setState({read: true});
         this.setState({book: {...this.state.book}, read: true});
         this.isInDatabase()
             ? this.setReadToTrue()
@@ -92,6 +115,7 @@ class SpecifiedBookBase extends Component {
     }
 
     addBookToFavorites = () => {
+        this.setState({favorite: true , read: true});
         this.isInDatabase()
             ? this.setFavoriteToTrue()
             : this.setState({
@@ -127,12 +151,18 @@ class SpecifiedBookBase extends Component {
                          alt={`Poster for ${book.title}`}/>
                     <h2 className="book__title">{book.title}</h2>
                     <p className="book__authors">{book.authors ? book.authors.join(', ') : "Anonymous"}</p>
-                    <div className='book__actions'>
+                    <div className='book__action'>
                         <span className="book__rating">4.2</span>
-                        <div className='book__add'>
-                            <button className="button" disabled={this.isInDatabase()} onClick={this.markBookAsOwned}>Mark as own</button>
-                            <button className="button" onClick={this.markBookAsRead}>Mark as read</button>
-                            <button className="button" onClick={this.addBookToFavorites}>Add to favorties</button>
+                        <div className='book__buttons'>
+                            <div className={this.isInDatabase() || this.state.own ? 'icon__green' : 'icon__red'} onClick={this.markBookAsOwned}>
+                                <i className="fas fa-plus"/>
+                            </div>
+                            <div className={this.isRead() ? 'icon__green' : 'icon__red'} onClick={this.markBookAsRead}>
+                                <i className="fas fa-check"/>
+                            </div>
+                            <div className={this.isFavorite() ? 'icon__green' : 'icon__red'} onClick={this.addBookToFavorites}>
+                                <i className="fas fa-star"/>
+                            </div>
                         </div>
                     </div>
                     {book.description

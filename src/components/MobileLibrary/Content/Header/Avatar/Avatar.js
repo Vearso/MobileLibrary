@@ -5,6 +5,7 @@ const Avatar = ({setShow}) => {
     const handleClick = () => {
         setShow(prev=> !prev);
     }
+
     return(
         <i className='fa fa-user-circle user__avatar' onClick={handleClick}/>
 

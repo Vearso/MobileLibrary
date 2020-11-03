@@ -1,0 +1,14 @@
+@import "../../../../../styles/colors";
+
+.button__container {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 0.7em;
+  font-size: 2em;
+
+  button {
+    background: none;
+    border: none;
+    color: $colorAccent;
+  }
+}

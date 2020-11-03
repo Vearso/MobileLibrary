@@ -8,7 +8,6 @@ import SignUpPage from "../../components/MobileLibrary/User/Account/SignUp/SignU
 import SignInPage from "../../components/MobileLibrary/User/Account/SignIn/SignIn";
 import {withAuthentication} from "../../components/MobileLibrary/User/Account/Session";
 import PasswordForgetPage from "../../components/MobileLibrary/User/Account/PasswordForget/PasswordForget";
-import AdminPage from "../../components/MobileLibrary/User/Account/Admin/Admin";
 import AccountPage from "../../components/MobileLibrary/User/Account/Account";
 import PasswordChangeForm from "../../components/MobileLibrary/User/Account/PasswordChange/PasswordChange";
 import UserInitializationPage from "../../components/MobileLibrary/User/Account/Initialization/UserInitialization";
@@ -24,7 +23,6 @@ const App = () => {
                     <Route path={ROUTES.SIGN_IN} component={SignInPage}/>
                     <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
                     <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
-                    <Route path={ROUTES.ADMIN} component={AdminPage}/>
                     <Route path={ROUTES.ACCOUNT} component={AccountPage}/>
                     <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangeForm}/>
                     <Route path={ROUTES.SET_UP} component={UserInitializationPage}/>
