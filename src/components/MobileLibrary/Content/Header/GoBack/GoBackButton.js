@@ -10,7 +10,8 @@ const GoBackButton = () => {
     }
     return (
         <div className='button__container'>
-            <button onClick={handleClick}>Back
+            <button onClick={handleClick}>
+                <i className="fas fa-chevron-left"/>
             </button>
         </div>
     )
