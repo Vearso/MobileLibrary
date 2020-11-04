@@ -4,7 +4,8 @@ import woman from './woman.png';
 import './UserPage.scss';
 import {withFirebase} from '../../User/Account/Firebase';
 import {Link} from "react-router-dom";
-import {MOBILE_LIBRARY} from "../../../constants/routes";
+import {MOBILE_LIBRARY, SET_UP} from "../../../constants/routes";
+import {useHistory} from "react-router";
 
 
 class UserPage extends Component {
@@ -24,6 +25,7 @@ class UserPage extends Component {
     componentDidMount() {
         this.props.firebase.user(this.state.userID).on('value', snapshot => {
             let userObject = snapshot.val();
+            if (userObject.name === undefined) this.props.history.push(`${SET_UP}`);
             if (userObject.books === undefined) userObject.books = [];
             if (userObject.queue === undefined) userObject.queue = [];
             this.setState({
@@ -55,9 +57,14 @@ class UserPage extends Component {
 }
 
 const UserInfo = ({user}) => {
+    const history = useHistory();
 
+    const handleEdit = () => {
+        history.push(`${SET_UP}`);
+    }
     return (
         <section className="user__info">
+            <i className='fas fa-edit user__edit' onClick={() => handleEdit()}/>
             <img className="user__photo" src={user.gender === 'Man' ? man : woman}
                  alt={`${user.name} ${user.surname}`}/>
             <h3 className="user__name">{user.name} {user.surname}</h3>

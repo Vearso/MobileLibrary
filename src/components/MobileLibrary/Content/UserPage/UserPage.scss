@@ -1,11 +1,3 @@
-//<section className="user__info">
-//<img className="user__photo" src={user.gender === 'Man' ? man : woman} alt={`Photo of ${user.name} ${user.surname}`}/>
-//<h3 className="user__name">{user.name} {user.surname}</h3>
-//<p className="user__about">About me: {user.about}</p>
-//<span className="user__books">Books : 42</span>
-//<span className="user__genre">My favorite genre is: Science-fiction</span>
-//</section>
-
 .user__info{
   display: flex;
   flex-direction: column;
@@ -16,6 +8,10 @@
   }
   .user__name{
     font-size: 2em;
+  }
+  .user__edit {
+    align-self: flex-end;
+    margin-right: 2em;
   }
 }
 

@@ -1,4 +1,4 @@
-import SearchedBook from "../../Books/Book/SearchedBooks/SearchedBook";
+import SearchedBook from "../../Books/SearchedBooks/SearchedBook";
 import React, {useEffect, useState} from "react";
 import {getVolumes} from "../../Books/API/requests";
 import './SearchPage.scss';
@@ -47,7 +47,6 @@ const SearchPage = ({books, getBookID, firebase}) => {
         }).catch(err => console.warn(err))
     }
 
-
     const isInDatabase = (id) => {
         if (user.books) {
             for (let book of user.books) {
@@ -57,6 +56,7 @@ const SearchPage = ({books, getBookID, firebase}) => {
             }
         } else return false;
     }
+
     const isRead = (id) => {
         if(user.books) {
             for (let book of user.books){
@@ -66,6 +66,7 @@ const SearchPage = ({books, getBookID, firebase}) => {
             }
         }
     }
+
     const isFavorite = (id) => {
         if(user.books) {
             for (let book of user.books){

@@ -41,7 +41,6 @@ class UserInitializationBase extends Component {
                 about,
                 gender,
                 favoriteGenre: favorite,
-
             })
             .then(() => {
                 this.setState({...initialState})
@@ -109,7 +108,7 @@ class UserInitializationBase extends Component {
                        placeholder="Favorite genres"
                 />
                 <button className='button' disabled={isInvalid} type="submit">
-                    Sign Up
+                    Save
                 </button>
             </form>
         );

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import './SpecifiedBookPage.scss';
-import {withFirebase} from "../../../User/Account/Firebase";
+import {withFirebase} from "../../User/Account/Firebase";
 
 
 const SpecifiedBookPage = ({id, book}) => {

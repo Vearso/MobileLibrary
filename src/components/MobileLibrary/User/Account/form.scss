@@ -16,8 +16,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
     padding: 1em;
-    height: 300px;
+    background-color: $colorSecondary;
+    width: 100%;
+
 
     .form__input {
       margin-top: 1em;
@@ -28,6 +31,18 @@
         text-align: center;
       }
     }
+    .form__select{
+    padding: 0.2em;
+      margin: 0.4em;
+
+    }
+
+    .form__textarea{
+      width: 80%;
+      min-height: 100px;
+      padding: 0.2em;
+    }
+
 
     .button {
       margin-top: 2em;
@@ -45,3 +60,4 @@
     }
   }
 }
+
