@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {compose} from "recompose";
 import {withRouter} from "react-router-dom";
 import {withFirebase} from "../Firebase";
-import GoBackButton from "../../../Content/Header/GoBack/GoBackButton";
+
 
 
 const UserChangeInformationPage = () => {

@@ -1,18 +1,29 @@
+@import "src/styles/mixins";
+
+.user__page {
+  min-height: 170vh;
+}
+
 .user__info{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 3em;
+  padding: 3em;
+  min-height: 100%;
   .user__photo{
-    width: 70%;
+    width: 12em;
   }
   .user__name{
     font-size: 2em;
   }
-  .user__edit {
-    align-self: flex-end;
-    margin-right: 2em;
+  .user__description {
+    display: flex;
+    flex-direction: column;
+    .user__edit {
+      align-self: flex-end;
+      margin-right: 2em;
+    }
   }
 }
 
@@ -27,4 +38,30 @@
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 0.5em;
+}
+
+@include tablet @include desktop {
+  .user__info {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+  .user__favorites{
+    .favorites{
+      display: flex;
+    }
+  }
+  .user__queue{
+    .queue{
+      display: flex;
+    }
+  }
+  .book {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 10em;
+  }
+
 }

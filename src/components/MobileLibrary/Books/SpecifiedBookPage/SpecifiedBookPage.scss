@@ -1,7 +1,7 @@
 @import '../../../../styles/colors';
+@import "src/styles/mixins";
 
 .book__info {
-  color: $colorText;
 
   .book__poster {
     width: 14em;
@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
 
+
     .book__rating {
       font-size: 4em;
     }
@@ -29,7 +30,8 @@
 .book__description {
   text-align: justify;
   width: 80%;
-  margin: 1em auto;
+  margin: 1em auto 0 auto;
+  padding: 1em;
 }
 
 .book__buttons {
@@ -60,5 +62,21 @@
     border-radius: 50%;
     background-color: $colorDanger;
     margin: 0.4em;
+  }
+}
+
+@include tablet
+@include desktop {
+  .book__info {
+
+    display: flex;
+    justify-content: space-around;
+    .poster__container{
+      padding: 2em;
+    }
+    .info__container {
+      width: 50%;
+      padding: 2em;
+    }
   }
 }

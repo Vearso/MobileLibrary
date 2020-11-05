@@ -145,7 +145,7 @@ class UserBooks extends Component {
         } else
             return (
                 <section className="user__books--page">
-                    <nav className={dark ? 'user__books--nav books__nav--dark':'user__books--nav'}>
+                    <nav className={dark ? 'user__books--nav books__nav--dark' : 'user__books--nav'}>
                         <ul className="nav__list">
                             <li><Link to={`${MOBILE_LIBRARY}/user/books`}>All</Link></li>
                             <li><Link to={`${MOBILE_LIBRARY}/user/books/read`}>Read</Link></li>
@@ -159,93 +159,105 @@ class UserBooks extends Component {
                         : <Route exact path={`${MOBILE_LIBRARY}/user/books`} render={() => (
                             <section className="user__books">
                                 <span className="description--title">All books</span>
-                                {this.state.user.books.map(book =>
-                                    <article className="book__container">
-                                        <Book book={book}/>
-                                        <div className="book__actions">
-                                            <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
-                                                className='fas fa-trash'/>
+                                <article className="books__container">
+                                    {this.state.user.books.map(book =>
+                                        <div className = 'book__container'>
+                                            <Book book={book}/>
+                                            <div className="book__actions">
+                                                <div className='icon icon__red'
+                                                     onClick={() => this.deleteBook(book.id)}><i
+                                                    className='fas fa-trash'/>
+                                                </div>
+                                                {book.read
+                                                    ? <div className='icon icon__green'
+                                                           onClick={() => this.toggleRead(book.id)}>
+                                                        <i className='fas fa-check'/>
+                                                    </div>
+                                                    : <div className='icon icon__red'
+                                                           onClick={() => this.toggleRead(book.id)}>
+                                                        <i className='fas fa-check'/>
+                                                    </div>}
+                                                {book.favorite
+                                                    ? <div className='icon icon__green'
+                                                           onClick={() => this.removeFromFavorites(book.id)}>
+                                                        <i className="fas fa-star"/>
+                                                    </div>
+                                                    : <div className='icon icon__red'
+                                                           onClick={() => this.addToFavorites(book.id)}>
+                                                        <i className="fas fa-star"/>
+                                                    </div>}
                                             </div>
-                                            {book.read
-                                                ? <div className='icon icon__green'
-                                                       onClick={() => this.toggleRead(book.id)}>
-                                                    <i className='fas fa-check'/>
-                                                </div>
-                                                : <div className='icon icon__red'
-                                                       onClick={() => this.toggleRead(book.id)}>
-                                                    <i className='fas fa-check'/>
-                                                </div>}
-                                            {book.favorite
-                                                ? <div className='icon icon__green'
-                                                       onClick={() => this.removeFromFavorites(book.id)}>
-                                                    <i className="fas fa-star"/>
-                                                </div>
-                                                : <div className='icon icon__red'
-                                                       onClick={() => this.addToFavorites(book.id)}>
-                                                    <i className="fas fa-star"/>
-                                                </div>}
                                         </div>
-                                    </article>
-                                )}
+                                    )}
+                                </article>
                             </section>
                         )}/>}
                     <Route path={`${MOBILE_LIBRARY}/user/books/read`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Read</span>
-                            {this.state.read.map(book =>
-                                <article className="book__container">
-                                    <Book book={book}/>
-                                    <div className="book__actions">
-                                        <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
-                                            className='fas fa-trash'/>
+                            <article className="books__container">
+                                {this.state.read.map(book =>
+                                    <div className='book__container'>
+                                        <Book book={book}/>
+                                        <div className="book__actions">
+                                            <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
+                                                className='fas fa-trash'/>
+                                            </div>
+                                            <div className='icon icon__accent' onClick={() => this.toggleRead(book.id)}>
+                                                <i className='fas fa-times'/>
+                                            </div>
+                                            <div className='icon icon__accent'
+                                                 onClick={() => this.addToFavorites(book.id)}>
+                                                <i className="fas fa-star"/>
+                                            </div>
                                         </div>
-                                        <div className='icon icon__accent' onClick={() => this.toggleRead(book.id)}>
-                                            <i className='fas fa-times'/>
-                                        </div>
-                                        <div className='icon icon__accent' onClick={() => this.addToFavorites(book.id)}>
-                                            <i className="fas fa-star"/>
-                                        </div>
-                                    </div>
-                                </article>)}
+                                    </div>)}
+                            </article>
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/notread`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Not Read</span>
-                            {this.state.notRead.map(book =>
-                                <article className="book__container">
-                                    <Book book={book}/>
-                                    <div className="book__actions">
-                                        <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
-                                            className='fas fa-trash'/>
-                                        </div>
-                                        <div className='icon icon__accent' onClick={() => this.toggleRead(book.id)}>
-                                            <i className='fas fa-check'/>
-                                        </div>
-                                        <div className={this.isInQueue(book.id) ? 'icon icon__green' : 'icon icon__red'}
-                                             onClick={() => this.addToQueue(book.id)}><i
-                                            className="fas fa-sort-numeric-down"/>
+                            <article className="books__container">
+                                {this.state.notRead.map(book =>
+                                    <div className = 'book__container'>
+                                        <Book book={book}/>
+                                        <div className="book__actions">
+                                            <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
+                                                className='fas fa-trash'/>
+                                            </div>
+                                            <div className='icon icon__accent' onClick={() => this.toggleRead(book.id)}>
+                                                <i className='fas fa-check'/>
+                                            </div>
+                                            <div
+                                                className={this.isInQueue(book.id) ? 'icon icon__green' : 'icon icon__red'}
+                                                onClick={() => this.addToQueue(book.id)}><i
+                                                className="fas fa-sort-numeric-down"/>
+                                            </div>
                                         </div>
                                     </div>
-                                </article>)}
+                                )}
+                            </article>
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/favorites`} render={() => (
                         <section className="user__books">
                             <span className="description--title">Favorites</span>
-                            {this.state.favorites.map(book =>
-                                <article className="book__container">
-                                    <Book book={book}/>
-                                    <div className="book__actions">
-                                        <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
-                                            className='fas fa-trash'/>
+                            <article className="books__container">
+                                {this.state.favorites.map(book =>
+                                    <div className='book__container'>
+                                        <Book book={book}/>
+                                        <div className="book__actions">
+                                            <div className='icon icon__red' onClick={() => this.deleteBook(book.id)}><i
+                                                className='fas fa-trash'/>
+                                            </div>
+                                            <div className='icon icon__accent'
+                                                 onClick={() => this.removeFromFavorites(book.id)}>
+                                                <i className="fas fa-star"/>
+                                            </div>
                                         </div>
-                                        <div className='icon icon__accent'
-                                             onClick={() => this.removeFromFavorites(book.id)}>
-                                            <i className="fas fa-star"/>
-                                        </div>
-                                    </div>
-                                </article>)}
+                                    </div>)}
+                            </article>
                         </section>
                     )}/>
                     <Route path={`${MOBILE_LIBRARY}/user/books/queue`} render={() => (
@@ -254,18 +266,22 @@ class UserBooks extends Component {
                             {this.state.noQueue ?
                                 <p><Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Add to queue</Link></p>
                                 : null}
-                            {this.state.user.queue.map(book =>
-                                <article className="book__container">
-                                    <Book book={book}/>
-                                    <div className="book__actions">
-                                        <div className=' icon icon__red' onClick={() => this.removeFromQueue(book.id)}>
-                                            <i className='fas fa-times'/>
+                            <article className="books__container">
+                                {this.state.user.queue.map(book =>
+                                    <div className = 'book__container'>
+                                        <Book book={book}/>
+                                        <div className="book__actions">
+                                            <div className=' icon icon__red'
+                                                 onClick={() => this.removeFromQueue(book.id)}>
+                                                <i className='fas fa-times'/>
+                                            </div>
+                                            <div className='icon icon__accent'
+                                                 onClick={() => this.markAsFinished(book.id)}>
+                                                <i className='fas fa-check'/>
+                                            </div>
                                         </div>
-                                        <div className='icon icon__accent' onClick={() => this.markAsFinished(book.id)}>
-                                            <i className='fas fa-check'/>
-                                        </div>
-                                    </div>
-                                </article>)}
+                                    </div>)}
+                            </article>
                         </section>
                     )}/>
                 </section>

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import PasswordChange from "../../User/Account/PasswordChange/PasswordChange";
 import './SettingsPage.scss';
 import {MOBILE_LIBRARY, PASSWORD_CHANGE} from "../../../constants/routes";
 import {Link} from "react-router-dom";
@@ -50,7 +49,7 @@ const SettingsPage = () => {
                    style={{...position}}/>
             </div>
             <h3 className="settings__title">User info</h3>
-            <p className="settings__description"> If you wish you can change info about yourself - just follow this
+            <p className="settings__description"> If you wish to change information about yourself - just follow this
                 link:</p>
             <Link to={`${MOBILE_LIBRARY}/user/change`}>Change info</Link>
             <h3 className="settings__title">Password Change</h3>

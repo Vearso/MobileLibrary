@@ -43,13 +43,13 @@ class UserPage extends Component {
         const user = this.state.user
         if (user.name !== undefined)
             return (
-                <>
+                <section className='user__page'>
                     <UserInfo user={user}/>
                     <hr className='line'/>
                     <UserFavoritesBooks user={user}/>
                     <hr className='line'/>
                     <UserBooksInQueue user={user}/>
-                </>
+                </section>
             )
         else return null;
     }
@@ -63,31 +63,35 @@ const UserInfo = ({user}) => {
         history.push(`${MOBILE_LIBRARY}/user/change`);
     }
     return (
-        <section className="user__info">
-            <i className='fas fa-edit user__edit' onClick={() => handleEdit()}/>
-            <img className="user__photo" src={user.gender === 'Man' ? man : woman}
-                 alt={`${user.name} ${user.surname}`}/>
-            <h3 className="user__name">{user.name} {user.surname}</h3>
-            <span className='description--title'>About me:</span>
-            <p className="user__about">{user.about}</p>
-            <span className="description--title">Books: {user.books.length}</span>
-            <span className="description--title">My favorite genre is:</span> <p>{user.favoriteGenre}</p>
-        </section>
+        <article className="user__info">
+            <div className="user__data">
+                <img className="user__photo" src={user.gender === 'Man' ? man : woman}
+                     alt={`${user.name} ${user.surname}`}/>
+                <h3 className="user__name">{user.name} {user.surname}</h3>
+            </div>
+            <div className="user__description">
+                <i className='fas fa-edit user__edit' onClick={() => handleEdit()}/>
+                <span className='description--title'>About me:</span>
+                <p className="user__about">{user.about}</p>
+                <span className="description--title">Books: {user.books.length}</span>
+                <span className="description--title">My favorite genre is:</span> <p>{user.favoriteGenre}</p>
+            </div>
+        </article>
     )
 }
 
 const UserFavoritesBooks = ({user}) => {
     const books = user.books.filter(book => book.favorite === true);
     return (
-        <section className="user__favorites">
+        <article className="user__favorites">
             <span className="description--title">Favorites</span>
             <div className="favorites">
                 {books.map((book, index) => index >= 3 ? null : <Book key={index} book={book}/>)}
-                <p>{books.length >= 3
-                    ? <Link to={`${MOBILE_LIBRARY}/user/books/favorites`}>More</Link>
-                    : <Link to={`${MOBILE_LIBRARY}/user/books/read`}>Add to favorites</Link>}</p>
             </div>
-        </section>
+            <p>{books.length >= 3
+                ? <Link to={`${MOBILE_LIBRARY}/user/books/favorites`}>More</Link>
+                : <Link to={`${MOBILE_LIBRARY}/user/books/read`}>Add to favorites</Link>}</p>
+        </article>
     )
 }
 
@@ -104,15 +108,15 @@ export const Book = ({book}) => {
 
 const UserBooksInQueue = ({user}) => {
     return (
-        <section className="user__queue">
+        <article className="user__queue">
             <span className="description--title">Queue</span>
             <div className="queue">
                 {user.queue.map((book, index) => index >= 3 ? null : <Book key={index} book={book}/>)}
-                <p>{user.queue.length > 0
-                    ? <Link to={`${MOBILE_LIBRARY}/user/books`}>More</Link>
-                    : <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Set up a queue</Link>}</p>
             </div>
-        </section>
+            <p>{user.queue.length > 0
+                ? <Link to={`${MOBILE_LIBRARY}/user/books`}>More</Link>
+                : <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Set up a queue</Link>}</p>
+        </article>
     )
 }
 

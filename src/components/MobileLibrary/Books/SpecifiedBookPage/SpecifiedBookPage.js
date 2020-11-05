@@ -115,7 +115,7 @@ class SpecifiedBookBase extends Component {
     }
 
     addBookToFavorites = () => {
-        this.setState({favorite: true , read: true});
+        this.setState({favorite: true, read: true});
         this.isInDatabase()
             ? this.setFavoriteToTrue()
             : this.setState({
@@ -147,31 +147,38 @@ class SpecifiedBookBase extends Component {
         return (
             <>
                 <section className='book__info'>
-                    <img className='book__poster' src={book.imageLinks ? book.imageLinks.thumbnail : ''}
-                         alt={`Poster for ${book.title}`}/>
-                    <h2 className="book__title">{book.title}</h2>
-                    <p className="book__authors">{book.authors ? book.authors.join(', ') : "Anonymous"}</p>
-                    <div className='book__action'>
-                        <span className="book__rating">4.2</span>
-                        <div className='book__buttons'>
-                            <div className={this.isInDatabase() || this.state.own ? 'icon__green' : 'icon__red'} onClick={this.markBookAsOwned}>
-                                <i className="fas fa-plus"/>
-                            </div>
-                            <div className={this.isRead() ? 'icon__green' : 'icon__red'} onClick={this.markBookAsRead}>
-                                <i className="fas fa-check"/>
-                            </div>
-                            <div className={this.isFavorite() ? 'icon__green' : 'icon__red'} onClick={this.addBookToFavorites}>
-                                <i className="fas fa-star"/>
+                    <div className="poster__container">
+                        <img className='book__poster' src={book.imageLinks ? book.imageLinks.thumbnail : ''}
+                             alt={`Poster for ${book.title}`}/>
+                    </div>
+                    <div className='info__container'>
+                        <h2 className="book__title">{book.title}</h2>
+                        <p className="book__authors">{book.authors ? book.authors.join(', ') : "Anonymous"}</p>
+                        <div className='book__action'>
+                            <span className="book__rating">4.2</span>
+                            <div className='book__buttons'>
+                                <div className={this.isInDatabase() || this.state.own ? 'icon__green' : 'icon__red'}
+                                     onClick={this.markBookAsOwned}>
+                                    <i className="fas fa-plus"/>
+                                </div>
+                                <div className={this.isRead() ? 'icon__green' : 'icon__red'}
+                                     onClick={this.markBookAsRead}>
+                                    <i className="fas fa-check"/>
+                                </div>
+                                <div className={this.isFavorite() ? 'icon__green' : 'icon__red'}
+                                     onClick={this.addBookToFavorites}>
+                                    <i className="fas fa-star"/>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+                </section>
+                <section>
                     {book.description
                         ? <p className="book__description" dangerouslySetInnerHTML={{__html: book.description}}/>
                         : <p className="book__description">No description for this book</p>}
-
-                </section>
-                <section className='book__comments'>
-
                 </section>
             </>
         )
