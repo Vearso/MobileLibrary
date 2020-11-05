@@ -4,8 +4,9 @@ import Button from "../Button/Button";
 
 const Footer = () => {
     const [email,setEmail] = useState('')
+    const theme = window.localStorage.getItem('theme');
     return (
-        <footer id='footer'className="page__footer">
+        <footer id='footer' className={theme === 'dark' ? "page__footer footer--dark":"page__footer"}>
             <div className="footer">
                 <div className="footer__contact">
                     <p className="contact--name">Mobile Library</p>

@@ -60,7 +60,7 @@ const UserInfo = ({user}) => {
     const history = useHistory();
 
     const handleEdit = () => {
-        history.push(`${SET_UP}`);
+        history.push(`${MOBILE_LIBRARY}/user/change`);
     }
     return (
         <section className="user__info">

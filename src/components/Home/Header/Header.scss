@@ -11,4 +11,8 @@
   background-color: $colorPrimary;
   box-shadow: 0 3px 3px $colorSecondary;
 }
+.header--dark{
+  background-color: $colorPrimaryDark;
+  box-shadow: 0 3px 3px $colorSecondaryDark;
+}
 //@import "src/components/Home/Header/Navigation/Navigation";

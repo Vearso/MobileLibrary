@@ -6,8 +6,9 @@ import Logo from "../Logo/Logo";
 
 
 const Header = () => {
+    const theme = window.localStorage.getItem('theme');
     return (
-        <header className='page__header'>
+        <header className={theme === 'dark' ? 'page__header header--dark':'page__header'}>
             <Logo link='/'/>
             <Navigation/>
         </header>

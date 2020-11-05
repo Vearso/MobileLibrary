@@ -17,5 +17,10 @@
     padding: 1em;
     margin-bottom: 1em;
   }
+}
 
+.about--dark{
+  .btn{
+    color: $colorBackground;
+  }
 }

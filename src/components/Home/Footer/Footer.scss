@@ -34,3 +34,13 @@
     align-items: center;
   }
 }
+
+.footer--dark {
+  background-color: $colorSecondaryDark;
+  .btn {
+    color: $colorBackground;
+  }
+  .copyright{
+    background-color: lighten($colorSecondaryDark, 20%);
+  }
+}

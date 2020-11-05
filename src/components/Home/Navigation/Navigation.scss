@@ -11,6 +11,7 @@
     font-size: 2em;
     background: none;
     border: none;
+
     &--icon {
     }
   }
@@ -31,6 +32,7 @@
       padding: 10px;
       list-style: none;
       width: 100%;
+
       a {
         display: block;
         width: 100%;
@@ -38,8 +40,14 @@
 
       &:hover {
         border-left: 4px solid $colorAccent;
-        background-color: scale-color($colorSecondary, $lightness: 30%);
       }
+    }
+  }
+  .nav--dark {
+    background-color: $colorSecondaryDark;
+
+    a{
+      color: $colorBackground;
     }
   }
 }
