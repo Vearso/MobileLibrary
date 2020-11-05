@@ -9,7 +9,6 @@ import {PasswordForgetLink} from "../PasswordForget/PasswordForget";
 
 const SignInPage = () => (
     <div className='page__form'>
-        <h1 className='form__title'>Sign In</h1>
         <SignInForm/>
         <SignUpLink/>
         <PasswordForgetLink/>
@@ -52,8 +51,10 @@ class SignInFormBase extends Component {
 
         const isInvalid = password === '' || email === '';
 
+        const theme = window.localStorage.getItem('theme')
         return (
-            <form className='form' onSubmit={this.onSubmit}>
+            <form className={theme === 'dark'? 'form form--dark':'form'} onSubmit={this.onSubmit}>
+                <h1 className='form__title'>Sign In</h1>
                 <input className='form__input'
                        name="email"
                        value={email}

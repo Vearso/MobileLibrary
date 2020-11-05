@@ -11,8 +11,9 @@ const Header = ({setSearch}) => {
     const [showMenu,setShowMenu] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const path = window.location.pathname;
+    const theme = window.localStorage.getItem('theme');
     return (
-        <header className='app__header'>
+        <header className={theme === 'dark' ? 'app__header--dark app__header':'app__header'} id='app__header'>
             {path === '/MobileLibrary'
                 ? <Link to={`/`}><Logo show={showSearch}/></Link>
                 : <GoBackButton/>}

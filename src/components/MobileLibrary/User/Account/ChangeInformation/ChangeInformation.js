@@ -2,30 +2,46 @@ import React, {Component} from 'react'
 import {compose} from "recompose";
 import {withRouter} from "react-router-dom";
 import {withFirebase} from "../Firebase";
-import * as ROUTES from "../../../../constants/routes";
 
-const UserInitializationPage = () => {
+
+const UserChangeInformationPage = () => {
     return (
         <div className='page__form'>
-            <UserInitializationForm/>
+            <UserChangeInformationForm/>
         </div>
     )
 }
 
-const initialState = {
-    name: '',
-    surname: '',
-    gender: 'Man',
-    about: '',
-    favorite: '',
-}
 
-class UserInitializationBase extends Component {
+class UserChangeInformationBase extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {...initialState};
+        this.state = {
+            name: '',
+            surname: '',
+            gender: '',
+            about: '',
+            favorite: '',
+        };
+    }
+    componentDidMount() {
+        const userID = this.props.firebase.auth.currentUser.uid;
+        this.props.firebase.user(userID).on('value',snapshot => {
+            const userObject = snapshot.val();
+            this.setState({
+                name: userObject.name,
+                surname: userObject.surname,
+                gender: userObject.gender,
+                about: userObject.about,
+                favorite: userObject.favoriteGenre,
+            })
+        })
+    }
+    componentWillUnmount() {
+        const userID = this.props.firebase.auth.currentUser.uid;
+        this.props.firebase.user(userID).off();
     }
 
     onSubmit = event => {
@@ -42,8 +58,7 @@ class UserInitializationBase extends Component {
                 favoriteGenre: favorite,
             })
             .then(() => {
-                this.setState({...initialState})
-                this.props.history.push(ROUTES.MOBILE_LIBRARY);
+                this.props.history.goBack();
             })
             .catch(error => {
                 this.setState({error});
@@ -89,16 +104,15 @@ class UserInitializationBase extends Component {
                         name="gender"
                         value={gender}
                         onChange={this.onChange}
-                        >
+                >
                     <option>Man</option>
                     <option>Woman</option>
                 </select>
                 <textarea className='form__textarea'
-                       name="about"
-                       value={about}
-                       onChange={this.onChange}
-                       type="text"
-                       placeholder="Write a few sentences about yourself"
+                          name="about"
+                          value={about}
+                          onChange={this.onChange}
+                          placeholder="Write a few sentences about yourself"
                 />
                 <input className='form__input'
                        name="favorite"
@@ -115,9 +129,9 @@ class UserInitializationBase extends Component {
     }
 }
 
-const UserInitializationForm = compose(
+const UserChangeInformationForm = compose(
     withRouter,
     withFirebase,
-)(UserInitializationBase);
+)(UserChangeInformationBase);
 
-export default UserInitializationPage;
+export default UserChangeInformationPage;

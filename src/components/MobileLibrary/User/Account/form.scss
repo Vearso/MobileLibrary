@@ -3,23 +3,29 @@
 
 .page__form {
   font-family: $main;
-  color: $colorText;
 
-  .form__title {
-    color: $colorAccent;
-    font-family: $special;
-    font-size: 3em;
 
-  }
 
   .form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 1em;
     background-color: $colorSecondary;
     width: 100%;
+    .button__container {
+      align-self: flex-start;
+    }
+
+
+    .form__title {
+      color: $colorAccent;
+      font-family: $special;
+      font-size: 3em;
+      margin: 0 auto;
+    }
 
 
     .form__input {
@@ -59,5 +65,12 @@
       font-size: 1.5em;
     }
   }
+  .form--dark {
+    background-color: $colorSecondaryDark;
+    .button {
+      color: $colorBackground;
+    }
+  }
 }
+
 

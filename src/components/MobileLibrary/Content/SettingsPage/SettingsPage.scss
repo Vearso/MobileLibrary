@@ -1,0 +1,19 @@
+.slider {
+  width: 20%;
+  height: 0.5em;
+  margin: 0 auto;
+  border-radius: 1em;
+  position: relative;
+}
+.slider--moon {
+  background-color: black;
+}
+
+.slider--sun {
+  background-color: white;
+}
+
+.theme--icon{
+  font-size: 1.2em;
+  position: absolute;
+}

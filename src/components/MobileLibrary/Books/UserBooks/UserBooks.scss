@@ -25,7 +25,9 @@
       }
     }
   }
-
+  .books__nav--dark{
+    background-color: $colorSecondaryDark;
+  }
   .user__books{
     .book__container{
       .book__title{

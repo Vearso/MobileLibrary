@@ -13,7 +13,11 @@ import PasswordChangeForm from "../../components/MobileLibrary/User/Account/Pass
 import UserInitializationPage from "../../components/MobileLibrary/User/Account/Initialization/UserInitialization";
 
 const App = () => {
-
+    const theme = window.localStorage.getItem('theme');
+    const root = document.getElementById('root');
+        if(theme === 'dark'){
+            root.classList.add('dark');
+    }
     return (
         <Router>
             <div className="App">

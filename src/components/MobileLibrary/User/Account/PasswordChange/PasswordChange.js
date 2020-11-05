@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import '../form.scss';
 import {withFirebase} from '../Firebase';
+import {MOBILE_LIBRARY} from "../../../../constants/routes";
+import GoBackButton from "../../../Content/Header/GoBack/GoBackButton";
 
 const INITIAL_STATE = {
     passwordOne: '',
@@ -22,6 +24,7 @@ class PasswordChangeForm extends Component {
             .doPasswordUpdate(passwordOne)
             .then(() => {
                 this.setState({...INITIAL_STATE});
+                this.props.history.push(`${MOBILE_LIBRARY}`);
             })
             .catch(error => {
                 this.setState({error});
@@ -39,11 +42,12 @@ class PasswordChangeForm extends Component {
 
         const isInvalid =
             passwordOne !== passwordTwo || passwordOne === '';
-
+        const theme = window.localStorage.getItem('theme');
         return (
-            <div className='page__form'>
-                <h1 className='form__title'>Change password</h1>
-                <form className='form' onSubmit={this.onSubmit}>
+            <div className={'page__form'}>
+                <form className={theme === 'dark' ? 'form form--dark':'form'} onSubmit={this.onSubmit}>
+                    <GoBackButton/>
+                    <h1 className='form__title'>Change password</h1>
                     <input className='form__input'
                            name="passwordOne"
                            value={passwordOne}
@@ -59,7 +63,7 @@ class PasswordChangeForm extends Component {
                            placeholder="Confirm New Password"
                     />
                     <button className='button' disabled={isInvalid} type="submit">
-                        Reset My Password
+                        Change My Password
                     </button>
 
                     {error && <p className='error'>{error.message}</p>}

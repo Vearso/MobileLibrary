@@ -139,13 +139,13 @@ class UserBooks extends Component {
     }
 
     render() {
-
+        const dark = document.getElementById('MobileLibrary').classList.contains('dark');
         if (this.state.noBooks) {
             return (<Link to={`${MOBILE_LIBRARY}/search`}>First add some books</Link>);
         } else
             return (
                 <section className="user__books--page">
-                    <nav className='user__books--nav'>
+                    <nav className={dark ? 'user__books--nav books__nav--dark':'user__books--nav'}>
                         <ul className="nav__list">
                             <li><Link to={`${MOBILE_LIBRARY}/user/books`}>All</Link></li>
                             <li><Link to={`${MOBILE_LIBRARY}/user/books/read`}>Read</Link></li>

@@ -9,7 +9,6 @@ import '../form.scss';
 
 const SignUpPage = () => (
     <div className='page__form'>
-        <h1 className='form__title'>Sign Up</h1>
         <SignUpForm/>
     </div>
 );
@@ -71,9 +70,10 @@ class SignUpFormBase extends Component {
             passwordOne === '' ||
             email === '' ||
             username === '';
-
+        const theme = window.localStorage.getItem('theme');
         return (
-            <form className='form' onSubmit={this.onSubmit}>
+            <form className={theme === 'dark' ? 'form form--dark':'form'} onSubmit={this.onSubmit}>
+                <h1 className='form__title'>Sign Up</h1>
                 <input className='form__input'
                     name="username"
                     value={username}

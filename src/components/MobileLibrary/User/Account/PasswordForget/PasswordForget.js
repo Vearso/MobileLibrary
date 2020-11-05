@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import '../form.scss';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../../../constants/routes';
+import {MOBILE_LIBRARY} from "../../../../constants/routes";
 
 const PasswordForgetPage = () => (
     <div className='page__form'>
-        <h1 className='form__title'>Password Forget</h1>
         <PasswordForgetForm />
     </div>
 );
@@ -30,6 +30,7 @@ class PasswordForgetFormBase extends Component {
             .doPasswordReset(email)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
+                this.props.history.push(`${MOBILE_LIBRARY}`);
             })
             .catch(error => {
                 this.setState({ error });
@@ -47,8 +48,10 @@ class PasswordForgetFormBase extends Component {
 
         const isInvalid = email === '';
 
+        const theme = window.localStorage.getItem('theme');
         return (
-            <form className='form' onSubmit={this.onSubmit}>
+            <form className={theme === 'dark' ? 'form form--dark': 'form'} onSubmit={this.onSubmit}>
+                <h1 className='form__title'>Password Forget</h1>
                 <input className='form__input'
                     name="email"
                     value={this.state.email}

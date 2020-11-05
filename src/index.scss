@@ -1,11 +1,38 @@
 @import "styles/reset";
 @import "styles/fonts";
-
+@import "styles/_colors.scss";
 body {
   margin: 0;
   font-family: $main, $second, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root{
+  background-color: $colorBackground;
+  color: $colorText;
+  min-height: 100vh;
+
+  a {
+    text-decoration: none;
+    color: $colorLink;
+  }
+  i {
+    color: $colorText;
+  }
+}
+.dark{
+  background-color: $colorText;
+  color: $colorBackground;
+  min-height: 100vh;
+
+  a {
+    text-decoration: none;
+    color: $colorAccent;
+  }
+  i {
+    color: $colorBackground;
+  }
 }
 
 code {

@@ -5,14 +5,12 @@
 .header__nav {
   font-family: $main;
   text-transform: uppercase;
-  color: $colorText;
 
   .nav__hamburger {
     padding: 1em;
     font-size: 2em;
     background: none;
     border: none;
-    color: $colorText;
     &--icon {
     }
   }
@@ -35,8 +33,6 @@
       width: 100%;
       a {
         display: block;
-        color: $colorText;
-        text-decoration: none;
         width: 100%;
       }
 
