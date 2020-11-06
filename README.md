@@ -1,6 +1,9 @@
-#Mobile Library
-<img src="https://raw.githubusercontent.com/Vearso/MobileLibrary/public/logo512.png" alt = Mobile Library></img>
-<h2>Mobile<span>Library</span></h2>
+<h1>Mobile Library</h1>
+
+<div display="flex">
+<img src="https://raw.githubusercontent.com/Vearso/MobileLibrary/public/logo512.png" alt='Mobile Library'></img><h2>Mobile<span>Library</span></h2>
+</div>
+
 <h2>Demo</h2>
 [https://mobilelibraty.netlify.app](https://mobilelibraty.netlify.app)
 <h2>About</h2>
