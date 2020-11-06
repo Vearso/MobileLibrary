@@ -155,7 +155,6 @@ class SpecifiedBookBase extends Component {
                         <h2 className="book__title">{book.title}</h2>
                         <p className="book__authors">{book.authors ? book.authors.join(', ') : "Anonymous"}</p>
                         <div className='book__action'>
-                            <span className="book__rating">4.2</span>
                             <div className='book__buttons'>
                                 <div className={this.isInDatabase() || this.state.own ? 'icon__green' : 'icon__red'}
                                      onClick={this.markBookAsOwned}>
