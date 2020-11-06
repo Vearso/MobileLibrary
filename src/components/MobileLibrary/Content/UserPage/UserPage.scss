@@ -4,22 +4,26 @@
   min-height: 170vh;
 }
 
-.user__info{
+.user__info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 3em;
   min-height: 100%;
-  .user__photo{
+
+  .user__photo {
     width: 12em;
   }
-  .user__name{
+
+  .user__name {
     font-size: 2em;
   }
+
   .user__description {
     display: flex;
     flex-direction: column;
+
     .user__edit {
       align-self: flex-end;
       margin-right: 2em;
@@ -27,34 +31,37 @@
   }
 }
 
-.line{
+.line {
   height: 1em;
 }
 
 .book {
   padding: 0.5em;
 }
-.description--title{
+
+.description--title {
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
 
-@include tablet @include desktop {
+@include tablet
+@include desktop {
   .user__info {
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
   }
-  .user__favorites{
-    .favorites{
+  .user__favorites {
+    .favorites {
       display: flex;
     }
   }
-  .user__queue{
-    .queue{
+  .user__queue {
+    .queue {
       display: flex;
     }
+
   }
   .book {
     margin: 0 auto;
@@ -63,5 +70,9 @@
     justify-content: space-between;
     width: 10em;
   }
-
+  a {
+    display: block;
+    margin: 0;
+    height: 2em;
+  }
 }

@@ -25,13 +25,26 @@
 
   .books__nav--dark {
     background-color: $colorSecondaryDark;
+    a {
+      color: $colorBackground;
+    }
   }
 
   .user__books {
     .books__container {
+      .book{
+
+      }
+      .book__poster{
+        height: 15em;
+      }
       .book__title {
-        font-size: 1.2em;
         font-weight: bold;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       button {

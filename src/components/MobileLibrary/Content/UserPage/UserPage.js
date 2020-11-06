@@ -88,9 +88,9 @@ const UserFavoritesBooks = ({user}) => {
             <div className="favorites">
                 {books.map((book, index) => index >= 3 ? null : <Book key={index} book={book}/>)}
             </div>
-            <p>{books.length >= 3
+            {books.length >= 3
                 ? <Link to={`${MOBILE_LIBRARY}/user/books/favorites`}>More</Link>
-                : <Link to={`${MOBILE_LIBRARY}/user/books/read`}>Add to favorites</Link>}</p>
+                : <Link to={`${MOBILE_LIBRARY}/user/books/read`}>Add to favorites</Link>}
         </article>
     )
 }
@@ -113,9 +113,9 @@ const UserBooksInQueue = ({user}) => {
             <div className="queue">
                 {user.queue.map((book, index) => index >= 3 ? null : <Book key={index} book={book}/>)}
             </div>
-            <p>{user.queue.length > 0
+            {user.queue.length > 0
                 ? <Link to={`${MOBILE_LIBRARY}/user/books`}>More</Link>
-                : <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Set up a queue</Link>}</p>
+                : <Link to={`${MOBILE_LIBRARY}/user/books/notread`}>Set up a queue</Link>}
         </article>
     )
 }
