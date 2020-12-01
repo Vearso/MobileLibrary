@@ -1,7 +1,7 @@
 <h1>Mobile Library</h1>
 
 <h2>Demo</h2>
- [https://mobilelibraty.netlify.app](https://mobilelibraty.netlify.app)
+ [Mobile Library](https://mobilelibraty.netlify.app)
    <p/> 
    <p>Test user:</p> 
    Login: user@user.pl 
