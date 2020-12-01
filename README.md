@@ -1,11 +1,11 @@
 <h1>Mobile Library</h1>
 
-<div >
-<img src="https://raw.githubusercontent.com/Vearso/MobileLibrary/blob/master/public/logo512.png" alt='Mobile Library'></img><h2>Mobile<span>Library</span></h2>
-</div>
-
 <h2>Demo</h2>
  [https://mobilelibraty.netlify.app](https://mobilelibraty.netlify.app)
+   <p/> 
+   <p>Test user:</p> 
+   Login: user@user.pl 
+   <p>Password: user@user.pl</p>
 <h2>About</h2>
 
 This app had been created to help you out with sorting and managing your books. 
@@ -14,6 +14,9 @@ for reading. It is my intention to add contacts in this app so user could
 communicate with others. In the project I use google books API and firebase 
 for managing users and storing their data. 
 
+There is also a dark mode, you can change information about you and password.
+<h2>In the future</h2>
+I plan to add contacts and live chat in this application.
 <h2>Installing</h2> 
 All your need is git and npm 
 
@@ -32,6 +35,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ES6 <br>
 React <br>
 Sass <br>
-Webpack <br>
+CRA <br>
+React-router <br>
+Firebase Authorization and Database
 
 ##
