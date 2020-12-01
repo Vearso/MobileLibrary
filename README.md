@@ -5,7 +5,7 @@
    <p/> 
    <p>Test user:</p> 
    Login: user@user.pl 
-   <p>Password: user@user.pl</p>
+   <p>Password: user@user</p>
 <h2>About</h2>
 
 This app had been created to help you out with sorting and managing your books. 
